@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Oluşturulmuş Tezler";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+
+@model  TezYonetimS.Models.TezOlusturModel
+
+
+@using (Html.BeginForm("OlusturulmusTezler", "Danisman", FormMethod.Post))
+{
+    <br />
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+    if (TempData["Basarili"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Basarili"]
+        </div>
+
+    }
+    <div class="content">
+        <div class="row">
+            <div class="col-md-2">
+                
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Akademik Bölüm</label>
+                    @Html.DropDownListFor(m => m.Bolum, Model.BolumlerList, "Seçiniz", new
+                         {
+                          @class = "dropdown form-control",
+
+                          @style = "color:white ;background-color:#02081dcf"
+                             })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tez Türü</label>
+                    @Html.DropDownListFor(m => m.TurId, Model.TezTurleriList, "Seçiniz", new
+                         {
+                          @class = "dropdown form-control",
+
+                          @style = "color:white ;background-color:#02081dcf"
+                             })
+                </div>
+            </div>
+        </div>
+        <Center>
+            <button style=" color:white; width:20%; background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Ara</button>
+        </Center>
+        @if (Model.SecilenTezlerList != null)
+        {
+            <br />
+            <br />
+            <div class="table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <th style=" font-size:15px">OLUŞTURULMA TARİHİ</th>
+                    <th style=" font-size:15px">TEZ ADI</th>
+                    <th style=" font-size:15px">DURUM</th>
+                    <th style=" font-size:15px">AKADEMİK BÖLÜM</th>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var tez in Model.SecilenTezlerList)
+                        {
+                            <tr>
+
+                                <td>@tez.OlusturulmaTarihi.Date</td>
+                                <td><a href="@Url.Action("TezDetay", "Danisman",new { Id=tez.Id}) ">@tez.Ad</a></td>
+                                <td>@tez.TezDurumu.Durum</td>
+                                <td>@tez.AkademikBolum.BolumAdi</td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        }
+
+
+
+
+    </div>
+
+
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+

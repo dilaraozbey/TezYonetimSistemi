@@ -1,0 +1,140 @@
+﻿
+@model TezYonetimS.Models.TezOlusturModel
+
+
+<div class="modal-content">
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="yeniAltIs">Yeni Alt İş</h5>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <form style="padding-top:4%">
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label" style=" float: left">Alt İş Adı*:</label>
+                        <input style="width:50%;height:auto" type="text" id="altisAdi" autocomplete="off" class="form-control">
+                    </div>
+                    <hr />
+
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Öncelik*:</label>
+                        <center>
+
+                            @Html.DropDownListFor(m => m.IsOncelikId, Model.IsOncelikList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975; width:70%",@id= "altIsOncelikId" })
+                        </center>
+
+                    </div>
+
+                    <div class='col-md-6'>
+                        <div class="form-group">
+                            <label for="CreatedOn">Başlama Tarihi*:</label>
+                            <div autocomplete="off" ">
+                                <input class="text-box single-line" data-val="true" id="altpBaslama" name="altpBaslama" type="text" value="" required autocomplete="off" />
+                                <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class='col-md-6'>
+                        <div class="form-group">
+                            <label for="CreatedOn">Bitiş Tarihi*:</label>
+                            <div>
+                                <input class="text-box single-line" data-val="true" id="altpBitis" name="altpBitis" type="text" value="" required autocomplete="off" />
+                                <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button type="button" onclick="AltIsKontrol()" id="olusturIs" class="btn btn-success">Oluştur</button>
+    </div>
+</div>
+<script src="/Content/jquery-ui-1.10.4.min.js"></script>
+<script src="/Content/jquery.ui.datepicker-tr.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.regional["tr"];
+        $('#altpBitis').datepicker({
+            minDate:'today',
+        });
+
+      
+        $("#altpBaslama").datepicker({
+
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#altpBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#altpBitis').datepicker("option", "minDate", newDate);
+              
+            }
+        });
+
+
+    });
+    function AltIsKontrol() {
+        let id = @Model.Is.Id;
+        let pBaslama = $("#altpBaslama").val();
+        let pBitis = $("#altpBitis").val();
+        let isAdi = $("#altisAdi").val();
+        let IsOncelik = $("#altIsOncelikId").val();
+        if (pBaslama == "" || pBaslama == null || pBitis == "" || pBitis == null || isAdi == "" || IsOncelik == "" || IsOncelik == null || IsOncelik == null) {
+           
+            Swal.fire('Lütfen Eksik Bir Yer Bırakmadığınıza Emin Olun!')
+        }
+        else {
+            $.ajax({
+                url: "/Danisman/YeniAltIs?Id=" + id + "&pBaslama=" + pBaslama + "&pBitis=" + pBitis +  "&isAdi=" + isAdi  + "&IsOncelik=" + IsOncelik ,
+                method: "GET",
+                success: function (response) {
+                
+                    let href = "/Danisman/YapilacakIsDetay/" + id + "?#menu2";
+                    
+                    if (location.pathname + "?" + location.hash == href) {
+                        window.location.reload();
+                    }
+                    else {
+                        $(location).attr('href', href);
+                    }
+
+                },
+                error: function (response) {
+
+                }
+                 
+            });
+
+
+        }
+    }
+
+
+
+
+</script>
+
+
+

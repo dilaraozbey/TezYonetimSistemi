@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Tez Talepleri";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+<!-- Required jQuery and jQuery UI Javascript references -->
+
+
+@model  TezYonetimS.Models.TezOlusturModel
+
+
+@using (Html.BeginForm("TezTalepleri", "Danisman", FormMethod.Post))
+{
+    <br />
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+    else if (ViewBag.Bilgi != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.Bilgi
+        </div>
+
+    }
+    <div class="content">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tezler</label>
+                    @Html.DropDownListFor(m => m.Tez_Id, Model.TezlerList, "Seçiniz", new
+                         {
+                          @class = "dropdown form-control",
+
+                          @style = "color:white ;background-color:#02081dcf"
+                             })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Türler</label>
+                    @Html.DropDownListFor(m => m.TezTurId, Model.TezTurleriList, "Seçiniz", new
+                         {
+                          @class = "dropdown form-control",
+
+                          @style = "color:white ;background-color:#02081dcf"
+                             })
+                </div>
+            </div>
+
+        </div>
+        <Center>
+            <button style=" color:white; width:20%; background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Ara</button>
+        </Center>
+        @if (Model.TezTalepleri != null)
+        {
+            <br />
+            <br />
+            <div class="table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <th style=" font-size:15px">TALEP TARİHİ</th>
+                    <th style=" font-size:15px">TEZ ADI</th>
+                    <th style=" font-size:15px">ÖĞRENCİ NO</th>
+                    <th style=" font-size:15px">ÖĞRENCİ</th>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var talep in Model.TezTalepleri)
+                        {
+                            <tr>
+                                <td>@talep.BasvuruTarihi</td>
+                                <td><a href="@Url.Action("TezDetay", "Danisman",new { Id=talep.TezId}) ">@talep.Tez.Ad</a></td>
+                                <td>@talep.Kullanici.Email</td>
+                                <td>@talep.Kullanici.Ad @talep.Kullanici.Soyad</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <button type="button" onclick="location.href='@Url.Action("TalepOnayla", "Danisman",new { Id=talep.TezId,Ogrenci=talep.Kullanici.Id,Talep=talep.Id})'" class="btn btn-success">Onayla</button>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" onclick="location.href='@Url.Action("TalepReddet", "Danisman",new { Id=talep.TezId,Ogrenci=talep.Kullanici.Id,Talep=talep.Id})'" class="btn btn-danger">Reddet</button>
+                                        </div>
+                                    </div>
+
+                                    <center>
+                                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info">Toplantı Oluştur</button>
+                                    </center>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            @Html.Partial("_oneritalepyenitoplanti", Model)
+                                        </div>
+                                    </div>
+
+                                </td>
+
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        }
+
+
+       
+
+
+    </div>
+
+
+}
+
+
+
+<style>
+    .modal-backdrop {
+        z-index: -1;
+        display: none;
+    }
+</style>
+
+<script>
+    $('.modal').on('hidden.bs.modal', function () {
+        $("body").css("padding-right", "");
+    });
+</script>

@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Tez Ara";
+}
+
+@model TezYonetimS.Models.Akademikturlermodel
+
+<html>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {<br />
+     <h1 style="color:white">
+         @ViewBag.Title <img style="width:7%" src="~/Images/reviews.png" />
+
+     </h1>
+        
+        <br />
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Aranacak Terim</label>
+                @Html.TextBoxFor(m => m.aranacakterim, null, new { @class = "form-control", @placeholder = "Aranacak Terim " })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Aranacak Alan</label>
+                <select class="form-control" style="color:white ;background-color:#02081dcf">
+                    <option disabled selected> --Aranacak Alan-- </option>
+                    <option value="TezAdi">Tez Adı</option>
+                    <option value="Anahtarkelime">Anahtar Kelime</option>
+                    <option value="Yazar">Yazar</option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Akademik Birim*</label>
+                @Html.DropDownListFor(m => m.BirimId, Model.BirimlerList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Akademik Program*</label>
+                @Html.DropDownListFor(m => m.ProgramId, Model.ProgramlarList, new { @class = "dropdown form-control", @disabled = "disabled", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <br />
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Akademik Bölüm*</label>
+                @Html.DropDownListFor(m => m.BolumId, Model.BolumlerList, new { @class = "dropdown form-control", @disabled = "disabled",@style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <br />
+
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Tez Türü*</label>
+                @Html.DropDownListFor(m => m.TezTurId, Model.TezTurleriList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Danışman</label>
+                @Html.DropDownListFor(m => m.DanismanId, Model.DanismanlarList, new
+           {
+               @class = "dropdown form-control",
+               @disabled = "disabled",
+               @style = "color:white ;background-color:#02081dcf"
+           })
+            </div>
+            <div class="form-group col-md-4">
+                <br />
+                <label for="inputEmail4">Dil</label>
+                @Html.DropDownListFor(m => m.DilId, Model.DillerList, new
+                {
+                    @class = "dropdown form-control",
+                    @disabled = "disabled",
+               @style = "color:white ;background-color:#02081dcf"
+                })
+            </div>
+
+
+
+        </div>
+        <br /><br />
+
+        <button style=" background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Ara</button>
+        <br />
+        <br /><br />
+
+    }
+    @section scripts
+    {
+
+
+        @Html.Partial("_DropDownAkademikTurler")
+    }
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Uye Girişi";
+}
+
+@model Kullanici
+
+<html>
+<body style="width:1%)">
+    @using (Html.BeginForm("UyeGirisi", "Kullanici", FormMethod.Post))
+    {
+        <br />
+        <h1 style="color:white">
+            ► Üye Girişi <img style="width:7%" src="~/Images/Key.png" />
+            ◄
+        </h1>
+
+
+        if (ViewBag.Uyari != null)
+        { <br />
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Uyari
+            </div>
+        }
+        <div class="form-group ">
+            <br />
+            <label style="font-size:17px ">Email Adresi</label>
+            <br />
+            <div>
+                <center>@Html.TextBoxFor(Model => Model.Email, null, new { @style = "width:50%", @class = "form-control", @placeholder = "@yalova.edu.tr olmadan yazınız." })</center>
+            </div>
+
+        </div>
+
+
+        <div class="form-group ">
+            <br />
+            <label style="font-size:17px " for="exampleInputPassword1">Şifre</label>
+            <br />
+
+            <center> @Html.TextBoxFor(Model => Model.Sifre, null, new { @id = "exampleInputPassword1", @class = "form-control", @type = "password", @placeholder = "Şifrenizi Giriniz.", @style = "width:50% " })</center>
+
+        </div>
+       
+        <br />
+        <br />
+        <button style=" background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca)" ; type="submit" class="btn btn-primary">Giriş Yap</button>
+        <br /> <br />
+        <div class="form-group">
+            <a style="font-size:13px"> Şifreni mi unuttun?</a>
+        </div>
+        <div class="form-group">
+            <a href="@Url.Action("UyeOl", "Kullanici")" style="font-size:15px">Henüz üye değil misin?</a>
+        </div>
+
+
+    }
+    @section scripts
+    {
+
+
+        @Html.Partial("_DropDownAkademikTurler")
+    }
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>
+
+

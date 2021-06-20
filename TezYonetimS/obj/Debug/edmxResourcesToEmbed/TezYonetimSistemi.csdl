@@ -1,0 +1,1516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TezYonetimSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AkademikBirim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BirimAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AkademikProgram" Relationship="Self.FK_AkademikProgram_AkademikBirim" FromRole="AkademikBirim" ToRole="AkademikProgram" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_AkademikBirim" FromRole="AkademikBirim" ToRole="Tez" />
+    <NavigationProperty Name="TezTuru_AkademikBirim" Relationship="Self.FK_TezTuru_AkademikBirim_AkademikBirim1" FromRole="AkademikBirim" ToRole="TezTuru_AkademikBirim" />
+  </EntityType>
+  <EntityType Name="AkademikBolum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BolumAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AkademikProgramId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AkademikProgram" Relationship="Self.FK_AkademikBolum_AkademikProgram" FromRole="AkademikBolum" ToRole="AkademikProgram" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_AkademikBolum" FromRole="AkademikBolum" ToRole="Tez" />
+  </EntityType>
+  <EntityType Name="AkademikProgram">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AkademikBirimId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AkademikBirim" Relationship="Self.FK_AkademikProgram_AkademikBirim" FromRole="AkademikProgram" ToRole="AkademikBirim" />
+    <NavigationProperty Name="AkademikBolum" Relationship="Self.FK_AkademikBolum_AkademikProgram" FromRole="AkademikProgram" ToRole="AkademikBolum" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_AkademikProgram" FromRole="AkademikProgram" ToRole="Tez" />
+  </EntityType>
+  <EntityType Name="AltIs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="YapilacakisId" Type="Int32" Nullable="false" />
+    <Property Name="IsOncelikId" Type="Int32" />
+    <NavigationProperty Name="IsOncellik" Relationship="Self.FK_AltIs_IsOncellik" FromRole="AltIs" ToRole="IsOncellik" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_AltIs_YapilacakIs" FromRole="AltIs" ToRole="YapilacakIs" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_AltIs" FromRole="AltIs" ToRole="Bildirim" />
+  </EntityType>
+  <EntityType Name="BagliIs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="MevcutIsId" Type="Int32" />
+    <Property Name="BagliIsId" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_Table1_YapilacakIs" FromRole="BagliIs" ToRole="YapilacakIs" />
+    <NavigationProperty Name="YapilacakIs1" Relationship="Self.FK_Table1_YapilacakIs1" FromRole="BagliIs" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="BagliOlacagiIs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="mevcutIsId" Type="Int32" />
+    <Property Name="BagliOlacagiIsId" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_BagliOlacagiIs_YapilacakIs" FromRole="BagliOlacagiIs" ToRole="YapilacakIs" />
+    <NavigationProperty Name="YapilacakIs1" Relationship="Self.FK_BagliOlacagiIs_YapilacakIs1" FromRole="BagliOlacagiIs" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="BasvuruDurumu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Durum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_OneriTez_BasvuruDurumu" FromRole="BasvuruDurumu" ToRole="OneriTez" />
+    <NavigationProperty Name="OneriTez1" Relationship="Self.FK_OneriTez_BasvuruDurumu1" FromRole="BasvuruDurumu" ToRole="OneriTez" />
+    <NavigationProperty Name="TezBasvuru" Relationship="Self.FK_TezBasvuru_BasvuruDurumu" FromRole="BasvuruDurumu" ToRole="TezBasvuru" />
+  </EntityType>
+  <EntityType Name="Bildirim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Okundu_Okunmadı" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TezId" Type="Int32" />
+    <Property Name="OneriTezId" Type="Int32" />
+    <Property Name="DansimanId" Type="Int32" Nullable="false" />
+    <Property Name="Ogrenci1" Type="Int32" />
+    <Property Name="Ogrenci2" Type="Int32" />
+    <Property Name="YapilacakIsId" Type="Int32" />
+    <Property Name="AltIsId" Type="Int32" />
+    <Property Name="SohbetId" Type="Int32" />
+    <NavigationProperty Name="AltIs" Relationship="Self.FK_Bildirim_AltIs" FromRole="Bildirim" ToRole="AltIs" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Bildirim_Kullanici3" FromRole="Bildirim" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Bildirim_Kullanici4" FromRole="Bildirim" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_Bildirim_Kullanici5" FromRole="Bildirim" ToRole="Kullanici" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_Bildirim_OneriTez" FromRole="Bildirim" ToRole="OneriTez" />
+    <NavigationProperty Name="Sohbet" Relationship="Self.FK_Bildirim_Sohbet" FromRole="Bildirim" ToRole="Sohbet" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Bildirim_Tez" FromRole="Bildirim" ToRole="Tez" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_Bildirim_YapilacakIs" FromRole="Bildirim" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="Dil">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_OneriTez_Dil" FromRole="Dil" ToRole="OneriTez" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_Dil" FromRole="Dil" ToRole="Tez" />
+  </EntityType>
+  <EntityType Name="IsDurumu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_YapilacakIs_IsDurumu" FromRole="IsDurumu" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="IsOncellik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OncellikDerecesi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AltIs" Relationship="Self.FK_AltIs_IsOncellik" FromRole="IsOncellik" ToRole="AltIs" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_YapilacakIs_IsOncellik" FromRole="IsOncellik" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TelefonNum" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="AktiflikDurumu" Type="Int16" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AkademikBolumId" Type="Int32" Nullable="false" />
+    <Property Name="Kod1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kod2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RolId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_Kullanici3" FromRole="Kullanici" ToRole="Bildirim" />
+    <NavigationProperty Name="Bildirim1" Relationship="Self.FK_Bildirim_Kullanici4" FromRole="Kullanici" ToRole="Bildirim" />
+    <NavigationProperty Name="Bildirim2" Relationship="Self.FK_Bildirim_Kullanici5" FromRole="Kullanici" ToRole="Bildirim" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_Kullanici_Rol" FromRole="Kullanici" ToRole="Rol" />
+    <NavigationProperty Name="Not" Relationship="Self.FK_Not_Kullanici" FromRole="Kullanici" ToRole="Not" />
+    <NavigationProperty Name="Not1" Relationship="Self.FK_Not_Kullanici1" FromRole="Kullanici" ToRole="Not" />
+    <NavigationProperty Name="Not2" Relationship="Self.FK_Not_Kullanici2" FromRole="Kullanici" ToRole="Not" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_OneriTez_Kullanici" FromRole="Kullanici" ToRole="OneriTez" />
+    <NavigationProperty Name="OneriTez1" Relationship="Self.FK_OneriTez_Kullanici1" FromRole="Kullanici" ToRole="OneriTez" />
+    <NavigationProperty Name="OneriTez2" Relationship="Self.FK_OneriTez_Kullanici2" FromRole="Kullanici" ToRole="OneriTez" />
+    <NavigationProperty Name="OneriTez3" Relationship="Self.FK_OneriTez_Kullanici3" FromRole="Kullanici" ToRole="OneriTez" />
+    <NavigationProperty Name="Sohbet" Relationship="Self.FK_Sohbet_Kullanici" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Sohbet1" Relationship="Self.FK_Sohbet_Kullanici1" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Sohbet2" Relationship="Self.FK_Sohbet_Kullanici2" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Sohbet3" Relationship="Self.FK_Sohbet_Kullanici3" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Sohbet4" Relationship="Self.FK_Sohbet_Kullanici4" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Sohbet5" Relationship="Self.FK_Sohbet_Kullanici5" FromRole="Kullanici" ToRole="Sohbet" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_Kullanici" FromRole="Kullanici" ToRole="Tez" />
+    <NavigationProperty Name="Tez1" Relationship="Self.FK_Tez_Kullanici1" FromRole="Kullanici" ToRole="Tez" />
+    <NavigationProperty Name="Tez2" Relationship="Self.FK_Tez_Kullanici2" FromRole="Kullanici" ToRole="Tez" />
+    <NavigationProperty Name="TezBasvuru" Relationship="Self.FK_TezBasvuru_Kullanici" FromRole="Kullanici" ToRole="TezBasvuru" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Toplanti_Kullanici" FromRole="Kullanici" ToRole="Toplanti" />
+    <NavigationProperty Name="Toplanti1" Relationship="Self.FK_Toplanti_Kullanici1" FromRole="Kullanici" ToRole="Toplanti" />
+    <NavigationProperty Name="Toplanti2" Relationship="Self.FK_Toplanti_Kullanici2" FromRole="Kullanici" ToRole="Toplanti" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_YapilacakIs_Kullanici" FromRole="Kullanici" ToRole="YapilacakIs" />
+    <NavigationProperty Name="YapilacakIs1" Relationship="Self.FK_YapilacakIs_Kullanici1" FromRole="Kullanici" ToRole="YapilacakIs" />
+    <NavigationProperty Name="YapilacakIs2" Relationship="Self.FK_YapilacakIs_Kullanici2" FromRole="Kullanici" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="Not">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Ogrenci1Id" Type="Int32" />
+    <Property Name="Ogrenci2Id" Type="Int32" />
+    <Property Name="DanismanId" Type="Int32" />
+    <Property Name="YapılacakisId" Type="Int32" />
+    <Property Name="TezId" Type="Int32" />
+    <Property Name="ToplantiId" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Not_Kullanici" FromRole="Not" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Not_Kullanici1" FromRole="Not" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_Not_Kullanici2" FromRole="Not" ToRole="Kullanici" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Not_Tez" FromRole="Not" ToRole="Tez" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Not_Toplanti" FromRole="Not" ToRole="Toplanti" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_Not_YapilacakIs" FromRole="Not" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="OneriTez">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ozet" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TeklifTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OgrenciId" Type="Int32" Nullable="false" />
+    <Property Name="DanismanId" Type="Int32" Nullable="false" />
+    <Property Name="DilId" Type="Int32" Nullable="false" />
+    <Property Name="TezTuruId" Type="Int32" Nullable="false" />
+    <Property Name="BasvuruDurumuId" Type="Int32" Nullable="false" />
+    <Property Name="AnahtarKelimeler" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BasvuruDurumu" Relationship="Self.FK_OneriTez_BasvuruDurumu" FromRole="OneriTez" ToRole="BasvuruDurumu" />
+    <NavigationProperty Name="BasvuruDurumu1" Relationship="Self.FK_OneriTez_BasvuruDurumu1" FromRole="OneriTez" ToRole="BasvuruDurumu" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_OneriTez" FromRole="OneriTez" ToRole="Bildirim" />
+    <NavigationProperty Name="Dil" Relationship="Self.FK_OneriTez_Dil" FromRole="OneriTez" ToRole="Dil" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_OneriTez_Kullanici" FromRole="OneriTez" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_OneriTez_Kullanici1" FromRole="OneriTez" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_OneriTez_Kullanici2" FromRole="OneriTez" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici3" Relationship="Self.FK_OneriTez_Kullanici3" FromRole="OneriTez" ToRole="Kullanici" />
+    <NavigationProperty Name="TezTuru" Relationship="Self.FK_OneriTez_TezTuru" FromRole="OneriTez" ToRole="TezTuru" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Toplanti_OneriTez" FromRole="OneriTez" ToRole="Toplanti" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="RolAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Kullanici_Rol" FromRole="Rol" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="Sohbet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OgrenciId" Type="Int32" />
+    <Property Name="DanismanId" Type="Int32" />
+    <Property Name="Mesaj" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_Sohbet" FromRole="Sohbet" ToRole="Bildirim" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Sohbet_Kullanici" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Sohbet_Kullanici1" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_Sohbet_Kullanici2" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici3" Relationship="Self.FK_Sohbet_Kullanici3" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici4" Relationship="Self.FK_Sohbet_Kullanici4" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici5" Relationship="Self.FK_Sohbet_Kullanici5" FromRole="Sohbet" ToRole="Kullanici" />
+    <NavigationProperty Name="YapilacakIs_Sohbet" Relationship="Self.FK_YapilacakIs_Sohbet_Sohbet" FromRole="Sohbet" ToRole="YapilacakIs_Sohbet" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tez">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TurkceAdi" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="AnahtarKelimeler" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Ozet" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="PdfLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OlusturulmaTarihi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BaslamaTarihi" Type="DateTime" Precision="0" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="SayfaSayisi" Type="Int32" />
+    <Property Name="AkademikBirimId" Type="Int32" Nullable="false" />
+    <Property Name="AkademikProgramId" Type="Int32" Nullable="false" />
+    <Property Name="AkademikBolumId" Type="Int32" Nullable="false" />
+    <Property Name="OgrenciId1" Type="Int32" />
+    <Property Name="OgrenciId2" Type="Int32" />
+    <Property Name="DanismanId" Type="Int32" Nullable="false" />
+    <Property Name="TezTuruId" Type="Int32" Nullable="false" />
+    <Property Name="DilId" Type="Int32" Nullable="false" />
+    <Property Name="TezDurumId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AkademikBirim" Relationship="Self.FK_Tez_AkademikBirim" FromRole="Tez" ToRole="AkademikBirim" />
+    <NavigationProperty Name="AkademikBolum" Relationship="Self.FK_Tez_AkademikBolum" FromRole="Tez" ToRole="AkademikBolum" />
+    <NavigationProperty Name="AkademikProgram" Relationship="Self.FK_Tez_AkademikProgram" FromRole="Tez" ToRole="AkademikProgram" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_Tez" FromRole="Tez" ToRole="Bildirim" />
+    <NavigationProperty Name="Dil" Relationship="Self.FK_Tez_Dil" FromRole="Tez" ToRole="Dil" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Tez_Kullanici" FromRole="Tez" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Tez_Kullanici1" FromRole="Tez" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_Tez_Kullanici2" FromRole="Tez" ToRole="Kullanici" />
+    <NavigationProperty Name="Not" Relationship="Self.FK_Not_Tez" FromRole="Tez" ToRole="Not" />
+    <NavigationProperty Name="TezDurumu" Relationship="Self.FK_Tez_TezDurumu" FromRole="Tez" ToRole="TezDurumu" />
+    <NavigationProperty Name="TezTuru" Relationship="Self.FK_Tez_TezTuru" FromRole="Tez" ToRole="TezTuru" />
+    <NavigationProperty Name="TezBasvuru" Relationship="Self.FK_TezBasvuru_Tez" FromRole="Tez" ToRole="TezBasvuru" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Toplanti_Tez1" FromRole="Tez" ToRole="Toplanti" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_YapilacakIs_Tez" FromRole="Tez" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="TezBasvuru">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BasvuruTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OgrenciId" Type="Int32" Nullable="false" />
+    <Property Name="TezId" Type="Int32" Nullable="false" />
+    <Property Name="BasvuruDurumuId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BasvuruDurumu" Relationship="Self.FK_TezBasvuru_BasvuruDurumu" FromRole="TezBasvuru" ToRole="BasvuruDurumu" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_TezBasvuru_Kullanici" FromRole="TezBasvuru" ToRole="Kullanici" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_TezBasvuru_Tez" FromRole="TezBasvuru" ToRole="Tez" />
+  </EntityType>
+  <EntityType Name="TezDurumu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Durum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_TezDurumu" FromRole="TezDurumu" ToRole="Tez" />
+  </EntityType>
+  <EntityType Name="TezTuru">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_OneriTez_TezTuru" FromRole="TezTuru" ToRole="OneriTez" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Tez_TezTuru" FromRole="TezTuru" ToRole="Tez" />
+    <NavigationProperty Name="TezTuru_AkademikBirim" Relationship="Self.FK_TezTuru_AkademikBirim_TezTuru1" FromRole="TezTuru" ToRole="TezTuru_AkademikBirim" />
+  </EntityType>
+  <EntityType Name="TezTuru_AkademikBirim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="TezTuruId" Type="Int32" Nullable="false" />
+    <Property Name="AkademikBirimId" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="AkademikBirim" Relationship="Self.FK_TezTuru_AkademikBirim_AkademikBirim1" FromRole="TezTuru_AkademikBirim" ToRole="AkademikBirim" />
+    <NavigationProperty Name="TezTuru" Relationship="Self.FK_TezTuru_AkademikBirim_TezTuru1" FromRole="TezTuru_AkademikBirim" ToRole="TezTuru" />
+  </EntityType>
+  <EntityType Name="Toplanti">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Saat" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Ogrenci1" Type="Int32" />
+    <Property Name="Ogrenci2" Type="Int32" />
+    <Property Name="Danisman" Type="Int32" />
+    <Property Name="DurumId" Type="Int32" />
+    <Property Name="TezId" Type="Int32" />
+    <Property Name="OneriId" Type="Int32" />
+    <Property Name="TeklifId" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Toplanti_Kullanici" FromRole="Toplanti" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Toplanti_Kullanici1" FromRole="Toplanti" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_Toplanti_Kullanici2" FromRole="Toplanti" ToRole="Kullanici" />
+    <NavigationProperty Name="Not" Relationship="Self.FK_Not_Toplanti" FromRole="Toplanti" ToRole="Not" />
+    <NavigationProperty Name="OneriTez" Relationship="Self.FK_Toplanti_OneriTez" FromRole="Toplanti" ToRole="OneriTez" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_Toplanti_Tez1" FromRole="Toplanti" ToRole="Tez" />
+    <NavigationProperty Name="ToplantiDurumu" Relationship="Self.FK_Toplanti_ToplantiDurumu" FromRole="Toplanti" ToRole="ToplantiDurumu" />
+    <NavigationProperty Name="Toplanti_YapilacakIs" Relationship="Self.FK_Toplanti_YapilacakIs_Toplanti" FromRole="Toplanti" ToRole="Toplanti_YapilacakIs" />
+  </EntityType>
+  <EntityType Name="Toplanti_YapilacakIs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YapiacakIsId" Type="Int32" />
+    <Property Name="ToplantiId" Type="Int32" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Toplanti_YapilacakIs_Toplanti" FromRole="Toplanti_YapilacakIs" ToRole="Toplanti" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_Toplanti_YapilacakIs_YapilacakIs" FromRole="Toplanti_YapilacakIs" ToRole="YapilacakIs" />
+  </EntityType>
+  <EntityType Name="ToplantiDurumu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Durum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Toplanti" Relationship="Self.FK_Toplanti_ToplantiDurumu" FromRole="ToplantiDurumu" ToRole="Toplanti" />
+  </EntityType>
+  <EntityType Name="YapilacakIs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+    <Property Name="Ogrenci1Id" Type="Int32" />
+    <Property Name="Ogrenci2Id" Type="Int32" />
+    <Property Name="DanismanId" Type="Int32" />
+    <Property Name="IsDurumuId" Type="Int32" />
+    <Property Name="IsOncelikId" Type="Int32" />
+    <Property Name="TezId" Type="Int32" />
+    <Property Name="planlananBaslamaT" Type="DateTime" Precision="0" />
+    <Property Name="planlananBitisT" Type="DateTime" Precision="0" />
+    <Property Name="gercekBaslamaT" Type="DateTime" Precision="0" />
+    <Property Name="gercekBitisT" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="AltIs" Relationship="Self.FK_AltIs_YapilacakIs" FromRole="YapilacakIs" ToRole="AltIs" />
+    <NavigationProperty Name="BagliIs" Relationship="Self.FK_Table1_YapilacakIs" FromRole="YapilacakIs" ToRole="BagliIs" />
+    <NavigationProperty Name="BagliIs1" Relationship="Self.FK_Table1_YapilacakIs1" FromRole="YapilacakIs" ToRole="BagliIs" />
+    <NavigationProperty Name="BagliOlacagiIs" Relationship="Self.FK_BagliOlacagiIs_YapilacakIs" FromRole="YapilacakIs" ToRole="BagliOlacagiIs" />
+    <NavigationProperty Name="BagliOlacagiIs1" Relationship="Self.FK_BagliOlacagiIs_YapilacakIs1" FromRole="YapilacakIs" ToRole="BagliOlacagiIs" />
+    <NavigationProperty Name="Bildirim" Relationship="Self.FK_Bildirim_YapilacakIs" FromRole="YapilacakIs" ToRole="Bildirim" />
+    <NavigationProperty Name="IsDurumu" Relationship="Self.FK_YapilacakIs_IsDurumu" FromRole="YapilacakIs" ToRole="IsDurumu" />
+    <NavigationProperty Name="IsOncellik" Relationship="Self.FK_YapilacakIs_IsOncellik" FromRole="YapilacakIs" ToRole="IsOncellik" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_YapilacakIs_Kullanici" FromRole="YapilacakIs" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici1" Relationship="Self.FK_YapilacakIs_Kullanici1" FromRole="YapilacakIs" ToRole="Kullanici" />
+    <NavigationProperty Name="Kullanici2" Relationship="Self.FK_YapilacakIs_Kullanici2" FromRole="YapilacakIs" ToRole="Kullanici" />
+    <NavigationProperty Name="Not" Relationship="Self.FK_Not_YapilacakIs" FromRole="YapilacakIs" ToRole="Not" />
+    <NavigationProperty Name="Tez" Relationship="Self.FK_YapilacakIs_Tez" FromRole="YapilacakIs" ToRole="Tez" />
+    <NavigationProperty Name="Toplanti_YapilacakIs" Relationship="Self.FK_Toplanti_YapilacakIs_YapilacakIs" FromRole="YapilacakIs" ToRole="Toplanti_YapilacakIs" />
+    <NavigationProperty Name="YapilacakIs_Sohbet" Relationship="Self.FK_YapilacakIs_Sohbet_YapilacakIs" FromRole="YapilacakIs" ToRole="YapilacakIs_Sohbet" />
+  </EntityType>
+  <EntityType Name="YapilacakIs_Sohbet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="YapilacakIsId" Type="Int32" />
+    <Property Name="SohbetId" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Sohbet" Relationship="Self.FK_YapilacakIs_Sohbet_Sohbet" FromRole="YapilacakIs_Sohbet" ToRole="Sohbet" />
+    <NavigationProperty Name="YapilacakIs" Relationship="Self.FK_YapilacakIs_Sohbet_YapilacakIs" FromRole="YapilacakIs_Sohbet" ToRole="YapilacakIs" />
+  </EntityType>
+  <Association Name="FK_AkademikProgram_AkademikBirim">
+    <End Role="AkademikBirim" Type="Self.AkademikBirim" Multiplicity="1" />
+    <End Role="AkademikProgram" Type="Self.AkademikProgram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikBirim">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AkademikProgram">
+        <PropertyRef Name="AkademikBirimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_AkademikBirim">
+    <End Role="AkademikBirim" Type="Self.AkademikBirim" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikBirim">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="AkademikBirimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TezTuru_AkademikBirim_AkademikBirim1">
+    <End Role="AkademikBirim" Type="Self.AkademikBirim" Multiplicity="1" />
+    <End Role="TezTuru_AkademikBirim" Type="Self.TezTuru_AkademikBirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikBirim">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TezTuru_AkademikBirim">
+        <PropertyRef Name="AkademikBirimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AkademikBolum_AkademikProgram">
+    <End Role="AkademikProgram" Type="Self.AkademikProgram" Multiplicity="1" />
+    <End Role="AkademikBolum" Type="Self.AkademikBolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikProgram">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AkademikBolum">
+        <PropertyRef Name="AkademikProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_AkademikBolum">
+    <End Role="AkademikBolum" Type="Self.AkademikBolum" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikBolum">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="AkademikBolumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_AkademikProgram">
+    <End Role="AkademikProgram" Type="Self.AkademikProgram" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AkademikProgram">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="AkademikProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AltIs_IsOncellik">
+    <End Role="IsOncellik" Type="Self.IsOncellik" Multiplicity="0..1" />
+    <End Role="AltIs" Type="Self.AltIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IsOncellik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AltIs">
+        <PropertyRef Name="IsOncelikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AltIs_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="1" />
+    <End Role="AltIs" Type="Self.AltIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AltIs">
+        <PropertyRef Name="YapilacakisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_AltIs">
+    <End Role="AltIs" Type="Self.AltIs" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="AltIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table1_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="BagliIs" Type="Self.BagliIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BagliIs">
+        <PropertyRef Name="MevcutIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table1_YapilacakIs1">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="BagliIs" Type="Self.BagliIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BagliIs">
+        <PropertyRef Name="BagliIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BagliOlacagiIs_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="BagliOlacagiIs" Type="Self.BagliOlacagiIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BagliOlacagiIs">
+        <PropertyRef Name="mevcutIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BagliOlacagiIs_YapilacakIs1">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="BagliOlacagiIs" Type="Self.BagliOlacagiIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BagliOlacagiIs">
+        <PropertyRef Name="BagliOlacagiIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_BasvuruDurumu">
+    <End Role="BasvuruDurumu" Type="Self.BasvuruDurumu" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasvuruDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="BasvuruDurumuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_BasvuruDurumu1">
+    <End Role="BasvuruDurumu" Type="Self.BasvuruDurumu" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasvuruDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="BasvuruDurumuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TezBasvuru_BasvuruDurumu">
+    <End Role="BasvuruDurumu" Type="Self.BasvuruDurumu" Multiplicity="1" />
+    <End Role="TezBasvuru" Type="Self.TezBasvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasvuruDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TezBasvuru">
+        <PropertyRef Name="BasvuruDurumuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_Kullanici3">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="DansimanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_Kullanici4">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="Ogrenci1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_Kullanici5">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="Ogrenci2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_OneriTez">
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OneriTez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="OneriTezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_Sohbet">
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sohbet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="SohbetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_Tez">
+    <End Role="Tez" Type="Self.Tez" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="TezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bildirim_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bildirim">
+        <PropertyRef Name="YapilacakIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_Dil">
+    <End Role="Dil" Type="Self.Dil" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dil">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="DilId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_Dil">
+    <End Role="Dil" Type="Self.Dil" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dil">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="DilId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_IsDurumu">
+    <End Role="IsDurumu" Type="Self.IsDurumu" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IsDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="IsDurumuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_IsOncellik">
+    <End Role="IsOncellik" Type="Self.IsOncellik" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IsOncellik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="IsOncelikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanici_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanici">
+        <PropertyRef Name="RolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="Ogrenci1Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="Ogrenci2Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_Kullanici3">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici3">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici4">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sohbet_Kullanici5">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sohbet">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="OgrenciId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="OgrenciId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TezBasvuru_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="TezBasvuru" Type="Self.TezBasvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TezBasvuru">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="Ogrenci1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="Ogrenci2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="Danisman" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="Ogrenci1Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Kullanici1">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="Ogrenci2Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Kullanici2">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="DanismanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_Tez">
+    <End Role="Tez" Type="Self.Tez" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="TezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_Toplanti">
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toplanti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="ToplantiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Not_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="Not" Type="Self.Not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Not">
+        <PropertyRef Name="YapılacakisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OneriTez_TezTuru">
+    <End Role="TezTuru" Type="Self.TezTuru" Multiplicity="1" />
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TezTuru">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OneriTez">
+        <PropertyRef Name="TezTuruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_OneriTez">
+    <End Role="OneriTez" Type="Self.OneriTez" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OneriTez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="OneriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Sohbet_Sohbet">
+    <End Role="Sohbet" Type="Self.Sohbet" Multiplicity="0..1" />
+    <End Role="YapilacakIs_Sohbet" Type="Self.YapilacakIs_Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sohbet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs_Sohbet">
+        <PropertyRef Name="SohbetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_TezDurumu">
+    <End Role="TezDurumu" Type="Self.TezDurumu" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TezDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="TezDurumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tez_TezTuru">
+    <End Role="TezTuru" Type="Self.TezTuru" Multiplicity="1" />
+    <End Role="Tez" Type="Self.Tez" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TezTuru">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tez">
+        <PropertyRef Name="TezTuruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TezBasvuru_Tez">
+    <End Role="Tez" Type="Self.Tez" Multiplicity="1" />
+    <End Role="TezBasvuru" Type="Self.TezBasvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TezBasvuru">
+        <PropertyRef Name="TezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_Tez1">
+    <End Role="Tez" Type="Self.Tez" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="TezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Tez">
+    <End Role="Tez" Type="Self.Tez" Multiplicity="0..1" />
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tez">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs">
+        <PropertyRef Name="TezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TezTuru_AkademikBirim_TezTuru1">
+    <End Role="TezTuru" Type="Self.TezTuru" Multiplicity="1" />
+    <End Role="TezTuru_AkademikBirim" Type="Self.TezTuru_AkademikBirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TezTuru">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TezTuru_AkademikBirim">
+        <PropertyRef Name="TezTuruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_ToplantiDurumu">
+    <End Role="ToplantiDurumu" Type="Self.ToplantiDurumu" Multiplicity="0..1" />
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToplantiDurumu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti">
+        <PropertyRef Name="DurumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_YapilacakIs_Toplanti">
+    <End Role="Toplanti" Type="Self.Toplanti" Multiplicity="0..1" />
+    <End Role="Toplanti_YapilacakIs" Type="Self.Toplanti_YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toplanti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti_YapilacakIs">
+        <PropertyRef Name="ToplantiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Toplanti_YapilacakIs_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="Toplanti_YapilacakIs" Type="Self.Toplanti_YapilacakIs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toplanti_YapilacakIs">
+        <PropertyRef Name="YapiacakIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YapilacakIs_Sohbet_YapilacakIs">
+    <End Role="YapilacakIs" Type="Self.YapilacakIs" Multiplicity="0..1" />
+    <End Role="YapilacakIs_Sohbet" Type="Self.YapilacakIs_Sohbet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YapilacakIs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="YapilacakIs_Sohbet">
+        <PropertyRef Name="YapilacakIsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TezYonetimSistemiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AkademikBirim" EntityType="Self.AkademikBirim" />
+    <EntitySet Name="AkademikBolum" EntityType="Self.AkademikBolum" />
+    <EntitySet Name="AkademikProgram" EntityType="Self.AkademikProgram" />
+    <EntitySet Name="AltIs" EntityType="Self.AltIs" />
+    <EntitySet Name="BagliIs" EntityType="Self.BagliIs" />
+    <EntitySet Name="BagliOlacagiIs" EntityType="Self.BagliOlacagiIs" />
+    <EntitySet Name="BasvuruDurumu" EntityType="Self.BasvuruDurumu" />
+    <EntitySet Name="Bildirim" EntityType="Self.Bildirim" />
+    <EntitySet Name="Dil" EntityType="Self.Dil" />
+    <EntitySet Name="IsDurumu" EntityType="Self.IsDurumu" />
+    <EntitySet Name="IsOncellik" EntityType="Self.IsOncellik" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+    <EntitySet Name="Not" EntityType="Self.Not" />
+    <EntitySet Name="OneriTez" EntityType="Self.OneriTez" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="Sohbet" EntityType="Self.Sohbet" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tez" EntityType="Self.Tez" />
+    <EntitySet Name="TezBasvuru" EntityType="Self.TezBasvuru" />
+    <EntitySet Name="TezDurumu" EntityType="Self.TezDurumu" />
+    <EntitySet Name="TezTuru" EntityType="Self.TezTuru" />
+    <EntitySet Name="TezTuru_AkademikBirim" EntityType="Self.TezTuru_AkademikBirim" />
+    <EntitySet Name="Toplanti" EntityType="Self.Toplanti" />
+    <EntitySet Name="Toplanti_YapilacakIs" EntityType="Self.Toplanti_YapilacakIs" />
+    <EntitySet Name="ToplantiDurumu" EntityType="Self.ToplantiDurumu" />
+    <EntitySet Name="YapilacakIs" EntityType="Self.YapilacakIs" />
+    <EntitySet Name="YapilacakIs_Sohbet" EntityType="Self.YapilacakIs_Sohbet" />
+    <AssociationSet Name="FK_AkademikProgram_AkademikBirim" Association="Self.FK_AkademikProgram_AkademikBirim">
+      <End Role="AkademikBirim" EntitySet="AkademikBirim" />
+      <End Role="AkademikProgram" EntitySet="AkademikProgram" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_AkademikBirim" Association="Self.FK_Tez_AkademikBirim">
+      <End Role="AkademikBirim" EntitySet="AkademikBirim" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TezTuru_AkademikBirim_AkademikBirim1" Association="Self.FK_TezTuru_AkademikBirim_AkademikBirim1">
+      <End Role="AkademikBirim" EntitySet="AkademikBirim" />
+      <End Role="TezTuru_AkademikBirim" EntitySet="TezTuru_AkademikBirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AkademikBolum_AkademikProgram" Association="Self.FK_AkademikBolum_AkademikProgram">
+      <End Role="AkademikProgram" EntitySet="AkademikProgram" />
+      <End Role="AkademikBolum" EntitySet="AkademikBolum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_AkademikBolum" Association="Self.FK_Tez_AkademikBolum">
+      <End Role="AkademikBolum" EntitySet="AkademikBolum" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_AkademikProgram" Association="Self.FK_Tez_AkademikProgram">
+      <End Role="AkademikProgram" EntitySet="AkademikProgram" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AltIs_IsOncellik" Association="Self.FK_AltIs_IsOncellik">
+      <End Role="IsOncellik" EntitySet="IsOncellik" />
+      <End Role="AltIs" EntitySet="AltIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AltIs_YapilacakIs" Association="Self.FK_AltIs_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="AltIs" EntitySet="AltIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_AltIs" Association="Self.FK_Bildirim_AltIs">
+      <End Role="AltIs" EntitySet="AltIs" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table1_YapilacakIs" Association="Self.FK_Table1_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="BagliIs" EntitySet="BagliIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table1_YapilacakIs1" Association="Self.FK_Table1_YapilacakIs1">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="BagliIs" EntitySet="BagliIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BagliOlacagiIs_YapilacakIs" Association="Self.FK_BagliOlacagiIs_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="BagliOlacagiIs" EntitySet="BagliOlacagiIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BagliOlacagiIs_YapilacakIs1" Association="Self.FK_BagliOlacagiIs_YapilacakIs1">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="BagliOlacagiIs" EntitySet="BagliOlacagiIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_BasvuruDurumu" Association="Self.FK_OneriTez_BasvuruDurumu">
+      <End Role="BasvuruDurumu" EntitySet="BasvuruDurumu" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_BasvuruDurumu1" Association="Self.FK_OneriTez_BasvuruDurumu1">
+      <End Role="BasvuruDurumu" EntitySet="BasvuruDurumu" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TezBasvuru_BasvuruDurumu" Association="Self.FK_TezBasvuru_BasvuruDurumu">
+      <End Role="BasvuruDurumu" EntitySet="BasvuruDurumu" />
+      <End Role="TezBasvuru" EntitySet="TezBasvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_Kullanici3" Association="Self.FK_Bildirim_Kullanici3">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_Kullanici4" Association="Self.FK_Bildirim_Kullanici4">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_Kullanici5" Association="Self.FK_Bildirim_Kullanici5">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_OneriTez" Association="Self.FK_Bildirim_OneriTez">
+      <End Role="OneriTez" EntitySet="OneriTez" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_Sohbet" Association="Self.FK_Bildirim_Sohbet">
+      <End Role="Sohbet" EntitySet="Sohbet" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_Tez" Association="Self.FK_Bildirim_Tez">
+      <End Role="Tez" EntitySet="Tez" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bildirim_YapilacakIs" Association="Self.FK_Bildirim_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="Bildirim" EntitySet="Bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_Dil" Association="Self.FK_OneriTez_Dil">
+      <End Role="Dil" EntitySet="Dil" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_Dil" Association="Self.FK_Tez_Dil">
+      <End Role="Dil" EntitySet="Dil" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_IsDurumu" Association="Self.FK_YapilacakIs_IsDurumu">
+      <End Role="IsDurumu" EntitySet="IsDurumu" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_IsOncellik" Association="Self.FK_YapilacakIs_IsOncellik">
+      <End Role="IsOncellik" EntitySet="IsOncellik" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanici_Rol" Association="Self.FK_Kullanici_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Kullanici" EntitySet="Kullanici" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_Kullanici" Association="Self.FK_Not_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_Kullanici1" Association="Self.FK_Not_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_Kullanici2" Association="Self.FK_Not_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_Kullanici" Association="Self.FK_OneriTez_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_Kullanici1" Association="Self.FK_OneriTez_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_Kullanici2" Association="Self.FK_OneriTez_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_Kullanici3" Association="Self.FK_OneriTez_Kullanici3">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici" Association="Self.FK_Sohbet_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici1" Association="Self.FK_Sohbet_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici2" Association="Self.FK_Sohbet_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici3" Association="Self.FK_Sohbet_Kullanici3">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici4" Association="Self.FK_Sohbet_Kullanici4">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sohbet_Kullanici5" Association="Self.FK_Sohbet_Kullanici5">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sohbet" EntitySet="Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_Kullanici" Association="Self.FK_Tez_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_Kullanici1" Association="Self.FK_Tez_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_Kullanici2" Association="Self.FK_Tez_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TezBasvuru_Kullanici" Association="Self.FK_TezBasvuru_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="TezBasvuru" EntitySet="TezBasvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_Kullanici" Association="Self.FK_Toplanti_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_Kullanici1" Association="Self.FK_Toplanti_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_Kullanici2" Association="Self.FK_Toplanti_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Kullanici" Association="Self.FK_YapilacakIs_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Kullanici1" Association="Self.FK_YapilacakIs_Kullanici1">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Kullanici2" Association="Self.FK_YapilacakIs_Kullanici2">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_Tez" Association="Self.FK_Not_Tez">
+      <End Role="Tez" EntitySet="Tez" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_Toplanti" Association="Self.FK_Not_Toplanti">
+      <End Role="Toplanti" EntitySet="Toplanti" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Not_YapilacakIs" Association="Self.FK_Not_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="Not" EntitySet="Not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OneriTez_TezTuru" Association="Self.FK_OneriTez_TezTuru">
+      <End Role="TezTuru" EntitySet="TezTuru" />
+      <End Role="OneriTez" EntitySet="OneriTez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_OneriTez" Association="Self.FK_Toplanti_OneriTez">
+      <End Role="OneriTez" EntitySet="OneriTez" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Sohbet_Sohbet" Association="Self.FK_YapilacakIs_Sohbet_Sohbet">
+      <End Role="Sohbet" EntitySet="Sohbet" />
+      <End Role="YapilacakIs_Sohbet" EntitySet="YapilacakIs_Sohbet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_TezDurumu" Association="Self.FK_Tez_TezDurumu">
+      <End Role="TezDurumu" EntitySet="TezDurumu" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tez_TezTuru" Association="Self.FK_Tez_TezTuru">
+      <End Role="TezTuru" EntitySet="TezTuru" />
+      <End Role="Tez" EntitySet="Tez" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TezBasvuru_Tez" Association="Self.FK_TezBasvuru_Tez">
+      <End Role="Tez" EntitySet="Tez" />
+      <End Role="TezBasvuru" EntitySet="TezBasvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_Tez1" Association="Self.FK_Toplanti_Tez1">
+      <End Role="Tez" EntitySet="Tez" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Tez" Association="Self.FK_YapilacakIs_Tez">
+      <End Role="Tez" EntitySet="Tez" />
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TezTuru_AkademikBirim_TezTuru1" Association="Self.FK_TezTuru_AkademikBirim_TezTuru1">
+      <End Role="TezTuru" EntitySet="TezTuru" />
+      <End Role="TezTuru_AkademikBirim" EntitySet="TezTuru_AkademikBirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_ToplantiDurumu" Association="Self.FK_Toplanti_ToplantiDurumu">
+      <End Role="ToplantiDurumu" EntitySet="ToplantiDurumu" />
+      <End Role="Toplanti" EntitySet="Toplanti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_YapilacakIs_Toplanti" Association="Self.FK_Toplanti_YapilacakIs_Toplanti">
+      <End Role="Toplanti" EntitySet="Toplanti" />
+      <End Role="Toplanti_YapilacakIs" EntitySet="Toplanti_YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Toplanti_YapilacakIs_YapilacakIs" Association="Self.FK_Toplanti_YapilacakIs_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="Toplanti_YapilacakIs" EntitySet="Toplanti_YapilacakIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YapilacakIs_Sohbet_YapilacakIs" Association="Self.FK_YapilacakIs_Sohbet_YapilacakIs">
+      <End Role="YapilacakIs" EntitySet="YapilacakIs" />
+      <End Role="YapilacakIs_Sohbet" EntitySet="YapilacakIs_Sohbet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

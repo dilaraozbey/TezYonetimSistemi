@@ -1,0 +1,82 @@
+﻿@model TezYonetimS.Models.TezOlusturModel
+
+
+
+@using (Html.BeginForm("Notlar", "Danisman"))
+
+
+{
+
+    <div class="form-group" style="padding-top:20px">
+        <center>
+            @Html.TextAreaFor(m => m.YeniNot, new { @id = "YeniNot", @class = "form-control", @placeholder = "Not ", @style = "width:60%" })
+        </center>
+       
+        <input id="tezId" type="hidden" value="@Model.YeniTez.Id" />
+    </div>
+<center>
+    <button id="notButton" type="button" class="btn btn-success">
+        Ekle
+    </button>
+</center>
+   
+
+    <div style="padding-bottom:20px;padding-top:30px">
+        @foreach (var not in Model.NotlarList)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <p class="card-text" style=" padding-top:10px; word-wrap: break-word">@not.Aciklama</p>
+
+                        <button type="button" onclick="location.href = '@Url.Action("NotuSil", "Danisman",new {Id=not.Id})'" class="btn btn-danger">Notu Sil</button>
+
+                    </center>
+
+                </div>
+            </div>
+        }
+
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        let activeTab = location.hash;
+        $("[href='" + activeTab + "']").trigger("click");
+    });
+    $("#notButton").click(function () {
+        let id = $("#tezId").val();
+        let yeniNot = $("#YeniNot").val();
+        if (yeniNot != "") {
+            $.ajax({
+                url: "/Danisman/Notlar?Id=" + id + "&YeniNot=" + yeniNot,
+                method: "GET",
+                success: function (response) {
+                    let href = "/Danisman/DevamEdenTezDetay/" + id + "?#menu4";
+
+                    if (location.pathname + "?" + location.hash == href) {
+                        window.location.reload();
+                    }
+                    else {
+                        $(location).attr('href', href);
+                    }
+
+                },
+                error: function (response) {
+
+                }
+            });
+
+        } else {
+            Swal.fire('Lütfen Eksik Bir Yer Bırakmadığınıza Emin Olun!');
+        }
+        
+
+      
+
+    });
+
+
+</script>
+

@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "► Tez Detay ◄";
+    Layout = "~/Views/Shared/_OgrenciLayout.cshtml";
+}
+
+
+@model  TezYonetimS.Models.Akademikturlermodel
+
+@using (Html.BeginForm("TezDetay", "Ogrenci", FormMethod.Post))
+{
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+
+
+                            @if (ViewBag.Uyari != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewBag.Uyari
+                                </div>
+                              
+                            }
+                            @if (ViewBag.Basarili != null)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    @ViewBag.Basarili
+
+                                </div>            
+                            }
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Tez No:</label>
+                                            <label>@Model.YeniTez.Id</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div>
+                                            <div class="row">
+
+                                                <div class="col">Tez Adı: @Model.YeniTez.Ad</div>
+
+                                                <div class="col">Tez Türü: @Model.YeniTez.TezTuru.Tur</div>
+                                                <br />
+                                                <div class="col">Danışman: @Model.Danisman.Ad @Model.Danisman.Soyad</div>
+                                                <div class="col">Dil: @Model.YeniTez.Dil.Ad</div>
+                                                <br />
+                                                <div class="col">Akademik Bölüm: @Model.YeniTez.AkademikBolum.BolumAdi</div>
+                                                <div class="col">Anahtar Kelimeler: @Model.YeniTez.AnahtarKelimeler</div>
+                                                <br />
+                                                <div class="col">Durum: @Model.YeniTez.TezDurumu.Durum</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md">
+                                        <br /><br /><br />
+
+                                        <button style="margin-left:20px; color:white;  background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" value=@Model.YeniTez.Id class="btn btn-primary">Başvuru Talebi Gönder</button>
+
+
+                                    </div>
+
+
+                                </div>
+                                <br />
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-user">
+                        <div class="image">
+                            <br /> 
+                            <div class="col" style="margin-left:30px">Özet: @Model.YeniTez.Ozet</div>
+                        </div>
+                        <div class="content">
+                            <div class="author">
+
+                            </div>
+
+                        </div>
+                        <hr>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+

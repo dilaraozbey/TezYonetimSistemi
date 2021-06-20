@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Üye Ol";
+}
+
+@model TezYonetimS.Models.Akademikturlermodel
+
+@using (Html.BeginForm("UyeOl", "Kullanici", FormMethod.Post))
+{
+
+    
+        <br />
+        <h1 style="color:white">
+            ► Üye Ol <img style="width:7% ;height:auto" src="~/Images/user.png" />
+            ◄
+        </h1>
+        if (ViewBag.Uyari != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+        }
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Adınız*</label>
+                @Html.TextBoxFor(m => m.YeniKullanici.Ad, null, new { @class = "form-control", @autocomplete = "off", @placeholder = "Adınız" })
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Soyadınız*</label>
+                @Html.TextBoxFor(m => m.YeniKullanici.Soyad, null, new { @class = "form-control", @autocomplete = "off", @placeholder = "Soyadınız" })
+            </div>
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-12">
+                <br />
+                <label for="inputEmail4">Email Adresiniz*</label>
+                <small id="emailHelp" class="form-text text-muted">Email adresiniz; öğrenci iseniz okul numaranız, danışman iseniz ad ve soyadınızdır.</small>
+                <center>@Html.TextBoxFor(m => m.YeniKullanici.Email, null, new { @style = "width:50%", @autocomplete = "off", @class = "form-control", @placeholder = "@yalova.edu.tr olmadan yazınız." })</center>
+
+
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Birim*</label>
+                @Html.DropDownListFor(m => m.BirimId, Model.BirimlerList, "Seçiniz", new { @class = "dropdown form-control", @autocomplete = "off", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Program*</label>
+                @Html.DropDownListFor(m => m.ProgramId, Model.ProgramlarList, new { @class = "dropdown form-control", @autocomplete = "off", @disabled = "disabled", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Bölüm*</label>
+                @Html.DropDownListFor(m => m.BolumId, Model.BolumlerList, new { @class = "dropdown form-control", @disabled = "disabled", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+
+
+
+            <div class="form-group col-md-6">
+                <label for="inputEmail4" style="font-size:13px">Şifreniz*</label>
+                @Html.TextBoxFor(m => m.YeniKullanici.Sifre, null, new { @id = "exampleInputPassword1", @autocomplete = "off", @class = "form-control", @type = "password", @placeholder = "Şifrenizi Giriniz." })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4" style="font-size:13px">Şifrenizin Tekrarı*</label>
+                @Html.TextBox("sifreDogrulama", null, new { @id = "exampleInputPassword1", @class = "form-control", @autocomplete = "off", @type = "password", @placeholder = "Şifrenizi Tekrar Giriniz" })
+            </div>
+        </div>
+
+
+
+
+        <br />
+
+        <button style=" background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Üye Ol</button>
+        <br />
+        <br />
+
+
+ }
+        @section scripts
+    {
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var bolumlist = $("#BolumId");
+                    var danismanlist = $("#DanismanId");
+
+                    $("#BirimId").change(function () {
+                        $("#ProgramId").prop("disabled", false);
+                        danismanlist.empty();
+                        bolumlist.empty();
+                        var id = $(this).val();
+                        var programlist = $("#ProgramId");
+
+                        programlist.empty();
+
+
+                        $.ajax({
+                            url: '/Kullanici/ProgramListele',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { 'id': id },
+                            success: function (data) {
+                                programlist.append('<option value =0 > Seçiniz  </option>')
+                                $.each(data, function (index, option) {
+                                    programlist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                                });
+
+                            }
+                        });
+
+                    });
+                    $("#ProgramId").change(function () {
+                        $("#BolumId").prop("disabled", false);
+                        danismanlist.empty();
+                        var id = $(this).val();
+                        bolumlist.empty();
+                        $.ajax({
+                            url: '/Kullanici/BolumListele',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { 'id': id },
+                            success: function (data) {
+                                bolumlist.append('<option value =0 > Seçiniz  </option>')
+                                $.each(data, function (index, option) {
+                                    bolumlist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                                });
+                            }
+                        });
+
+                    });
+
+
+                });
+
+            </script>
+        }
+
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+    

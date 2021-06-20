@@ -1,0 +1,174 @@
+﻿@model TezYonetimS.Models.TezOlusturModel
+
+
+<div class="modal-content">
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="yeniIs">Yeni Yapılacak İş</h5>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <form style="padding-top:4%">
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label" style=" float: left">Yapılacak İş Adı*:</label>
+                        <input style="width:50%;height:auto" type="text" id="isAdi" autocomplete="off" class="form-control">
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label" style=" float: left">Açıklama*:</label>
+                        <input style="width: 70%; height: auto" type="text" id="aciklama" autocomplete="off" required="required" class="form-control">
+                    </div>
+                    <hr />
+
+                    <div class='col-md-4'>
+                        <div class="form-group">
+                            <label for="CreatedOn">Planlanan Başlama Tarihi*:</label>
+                            <div autocomplete="off" ">
+                                <input class="text-box single-line" data-val="true" id="pBaslama" name="pBaslama" type="text" value="" required autocomplete="off" />
+                                <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class='col-md-4'>
+                        <div class="form-group">
+                            <label for="CreatedOn">Planlanan Bitiş Tarihi*:</label>
+                            <div>
+                                <input class="text-box single-line" data-val="true" id="pBitis" name="pBitis" type="text" value="" required autocomplete="off" />
+                                <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class='col-md-4'>
+                        <div class="form-group">
+                            <label for="CreatedOn">Gerçek Başlama Tarihi:</label>
+                            <div autocomplete="off">
+                                <input class="text-box single-line" data-val="true" id="gBaslama" name="gBaslama" type="text" value="" autocomplete="off" />
+                                <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+
+                        <label for="inputEmail4">Durum*:</label>
+                        @Html.DropDownListFor(m => m.IsDurumId, Model.IsDurumList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975" })
+                    </div>
+                    <div class="form-group col-md-6">
+
+                        <label for="inputEmail4">Öncelik*:</label>
+                        @Html.DropDownListFor(m => m.IsOncelikId, Model.IsOncelikList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975" })
+                    </div>
+
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button type="button" onclick="kontrol()" id="olusturIs" class="btn btn-success">Oluştur</button>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+<script src="/Content/jquery-ui-1.10.4.min.js"></script>
+<script src="/Content/jquery.ui.datepicker-tr.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.regional["tr"];
+        $('#pBitis').datepicker({
+
+        });
+
+        $('#gBaslama').datepicker({
+
+        });
+        $("#pBaslama").datepicker({
+
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#pBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#pBitis').datepicker("option", "minDate", newDate);
+                $('#gBaslama').datepicker("option", "minDate", newDate);
+                $('#gBaslama').datepicker("option", "minDate", newDate);
+            }
+        });
+
+
+    });
+    function kontrol() {
+        let id = $("#tezId").val();
+        let pBaslama = $("#pBaslama").val();
+        let pBitis = $("#pBitis").val();
+        let gBaslama = $("#gBaslama").val();
+        let isAdi = $("#isAdi").val();
+        let aciklama = $("#aciklama").val();
+        let IsOncelik = $("#IsOncelikId").val();
+        let IsDurum = $("#IsDurumId").val();
+        if (pBaslama == "" || pBaslama == null || pBitis == "" || pBitis == null || isAdi == "" || aciklama == "" || IsOncelik == "" || IsOncelik == null || IsDurum == "" || IsOncelik == null) {
+
+            Swal.fire('Lütfen Eksik Bir Yer Bırakmadığınıza Emin Olun!')
+        }
+        else {
+            $.ajax({
+                url: "/Danisman/YeniYapilacakIs?Id=" + id + "&pBaslama=" + pBaslama + "&pBitis=" + pBitis + "&gBaslama=" + gBaslama + "&isAdi=" + isAdi + "&aciklama=" + aciklama + "&IsOncelik=" + IsOncelik + "&IsDurum=" + IsDurum,
+                method: "GET",
+                success: function (response) {
+                    let href = "/Danisman/DevamEdenTezDetay/" + id + "?#menu2";
+
+
+                    if (location.pathname + "?" + location.hash == href) {
+                        window.location.reload();
+                    }
+                    else {
+                        $(location).attr('href', href);
+                    }
+
+                },
+                error: function (response) {
+
+                }
+            });
+            $(document).ready(function () {
+                let menuId = location.hash;
+                if (location.hash.substr(1, 4) == "menu") {
+                    let $targetButton = $("[href='" + menuId + "']").parent();
+                    let $targetContent = $(menuId);
+
+                    $targetButton.siblings().removeClass("active");
+                    $targetButton.addClass("active");
+
+                    $targetContent.siblings().removeClass("active show in");
+                    $targetContent.addClass("active show in");
+                }
+            });
+
+
+        }
+    }
+
+
+
+
+</script>
+
+
+

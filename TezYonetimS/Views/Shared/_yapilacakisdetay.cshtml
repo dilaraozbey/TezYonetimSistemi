@@ -1,0 +1,281 @@
+﻿@model TezYonetimS.Models.TezOlusturModel
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>İş Adı*:</label>
+                @Html.TextBoxFor(m => m.Is.Ad, Model.Is.Ad, new { @class = "form-control", @id = "isAdi" })
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+
+            <label for="inputEmail4">Durum*:</label>
+            @Html.DropDownListFor(m => m.Is.IsDurumuId, Model.IsDurumList, Model.Is.IsDurumu.Durum, new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975", @id = "IsDurumuId" })
+        </div>
+        <div class="form-group col-md-3">
+
+            <label for="inputEmail4">Öncelik*:</label>
+            @Html.DropDownListFor(m => m.Is.IsOncelikId, Model.IsOncelikList, Model.Is.IsOncellik.OncellikDerecesi, new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975", @id = "IsOncelikId" })
+        </div>
+
+
+        <div class='col-md-3'>
+            <div class="form-group">
+                <label for="CreatedOn">Planlanan Başlama Tarihi*:</label>
+                <div autocomplete="off">
+                    <input class="text-box single-line" data-val="true" id="planlananBaslama" name="planlananBaslama" type="text" value=@Model.Is.planlananBaslamaT required autocomplete="off" />
+                    <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                </div>
+                <hr />
+            </div>
+        </div>
+
+        <div class='col-md-3'>
+            <div class="form-group">
+                <label for="CreatedOn">Planlanan Bitiş Tarihi*:</label>
+                <div>
+                    <input class="text-box single-line" data-val="true" id="planlananBitis" name="planlananBitis" type="text" value=@Model.Is.planlananBitisT required autocomplete="off" />
+                    <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                </div>
+                <hr />
+            </div>
+        </div>
+
+        @if (Model.Is.gercekBaslamaT != null)
+        {
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="CreatedOn">Gerçek Başlama Tarihi:</label>
+                    <div autocomplete="off">
+                        <input class="text-box single-line" data-val="true" id="gercekBaslama" name="gercekBaslama" type="text" value=@Model.Is.gercekBaslamaT autocomplete="off" />
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        }
+        @if (Model.Is.gercekBaslamaT == null)
+        {
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+                    <div autocomplete="off">
+                        <input class="text-box single-line" data-val="true" id="gercekBaslama" name="gercekBaslama" type="text" value="" autocomplete="off" />
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        }
+        @if (Model.Is.gercekBitisT != null)
+        {
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+                    <div autocomplete="off">
+                        <input class="text-box single-line" data-val="true" id="gercekBitis" name="gercekBitis" type="text" value=@Model.Is.gercekBitisT autocomplete="off" />
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        }
+        @if (Model.Is.gercekBitisT == null)
+        {
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+                    <div autocomplete="off">
+                        <input class="text-box single-line" data-val="true" id="gercekBitis" name="gercekBitis" type="text" value="" autocomplete="off" />
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        }
+        <center>
+
+            <div class="col-md-12">
+                <label>Açıklama*:</label>
+                <div class="form-group">
+
+                    @Html.TextAreaFor(m => m.Is.Aciklama, new { rows = "10", cols = "50", @id = "Aciklama" })
+                </div>
+            </div>
+        </center>
+
+        <hr />
+        <center>
+            <div class="col-md-4">
+        
+            </div>
+            <div class="col-md-2">
+                <button type="button" onclick="isKontrol()" class="btn btn-warning">Güncelle</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" i id="yapilacakIsSil" class="btn btn-danger">Sil</button>
+            </div>
+            <div class="col-md-4">
+               
+            </div>
+        </center>
+    </div>
+   
+
+
+</div>
+<script src="/Content/jquery-ui-1.10.4.min.js"></script>
+<script src="/Content/jquery.ui.datepicker-tr.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.regional["tr"];
+        $('#planlananBitis').datepicker({
+
+        });
+
+        $('#gercekBaslama').datepicker({
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#gercekBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#gercekBitis').datepicker("option", "minDate", newDate);
+
+            }
+        });
+        $('#gercekBitis').datepicker({
+
+        });
+        $("#planlananBaslama").datepicker({
+
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#planlananBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#planlananBitis').datepicker("option", "minDate", newDate);
+                $('#gercekBaslama').datepicker("option", "minDate", newDate);
+                
+            }
+        });
+
+
+    });
+
+    $(document).on('click', '#yapilacakIsSil', function () {
+
+        var Id = @Model.Is.Id;
+        
+
+        Swal.fire({
+            title: 'Bu işi silmek istediğine emin misin?',
+            text: "Bu işle ilgili hiçbir bilgiye bir daha ulaşamayacaksın.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet,silmek istiyorum',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'post',
+                    url: '/Danisman/YapilacakIsSil/' + Id,
+                    success: function (data) {
+                        if (data) {
+                            console.log('truee');
+                            console.log(data);
+                            Swal.fire(
+                                'Başarıyla Silindi!',
+                                '3 saniye içinde yönlendirileceksiniz.',
+                                'success'
+                            )
+                            setTimeout(
+                                function () {
+                                    window.location.href = '/Danisman/DevamEdenTezDetay/' +@Model.Is.TezId+ "?#menu2"
+                                        
+                                }, 3000);
+
+                        }
+                        else {
+                            console.log('false');
+                            Swal.fire(
+                                'Error!',
+                                'Your file has been error.',
+                                'success'
+                            )
+                            return false;
+                        }
+                    }
+                });
+
+
+
+
+            }
+        })
+
+
+    });
+    function isKontrol() {
+        let id = @Model.Is.Id;
+        let pBaslama = $("#planlananBaslama").val();
+        let pBitis = $("#planlananBitis").val();
+        let gBaslama = $("#gercekBaslama").val();
+        let gBitis = $("#gercekBitis").val();
+        let isAdi = $("#isAdi").val();
+        let aciklama = $("#Aciklama").val();
+        let IsOncelik = $("#IsOncelikId").val();
+        let IsDurum = $("#IsDurumuId").val();
+        
+        if (pBaslama == "" || pBaslama == null || pBitis == "" || pBitis == null || isAdi == "" || aciklama == "" || IsOncelik == "" || IsOncelik == null || IsDurum == "" || IsOncelik == null) {
+            
+            Swal.fire('Lütfen Eksik Bir Yer Bırakmadığınıza Emin Olun!');
+        }
+        else {
+            $.ajax({
+                url: "/Danisman/YapilacakIsGuncelle?Id=" + id + "&pBaslama=" + pBaslama + "&pBitis=" + pBitis + "&gBaslama=" + gBaslama + "&gBitis=" + gBitis  + "&isAdi=" + isAdi + "&aciklama=" + aciklama + "&IsOncelik=" + IsOncelik + "&IsDurum=" + IsDurum,
+                method: "GET",
+                success: function (response) {
+                    let href = "/Danisman/YapilacakIsDetay/" + id + "?#menu1";
+                    
+                    if (location.pathname + "?" + location.hash == href) {
+                        window.location.reload();
+                    }
+                    else {
+                        $(location).attr('href', href);
+                    }
+
+                },
+                error: function (response) {
+
+                }
+            });
+            $(document).ready(function () {
+                let menuId = location.hash;
+                if (location.hash.substr(1, 4) == "menu") {
+                    let $targetButton = $("[href='" + menuId + "']").parent();
+                    let $targetContent = $(menuId);
+
+                    $targetButton.siblings().removeClass("active");
+                    $targetButton.addClass("active");
+
+                    $targetContent.siblings().removeClass("active show in");
+                    $targetContent.addClass("active show in");
+                }
+            });
+
+
+        }
+    }
+
+
+
+
+</script>

@@ -1,0 +1,147 @@
+﻿@model TezYonetimS.Models.TezOlusturModel
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="exampleInputEmail1">İş SEÇİNİZ:</label>
+            @Html.DropDownListFor(m => m.Is_Id, Model.YapilacakIslerSelectedList, "Seçiniz", new
+                         {
+                          @class = "dropdown form-control",
+
+                          @style = "color:white ;background-color:#02081dcf;width:%50"
+                             })
+            <Center>
+                <button id="bagliIsEkle" type="button" class="btn btn-success" style="margin-top:25px">
+                    Ekle
+                </button>
+            </Center>
+            <input id="IsId" type="hidden" value="@Model.YapilacakIs_Id" />
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="exampleInputEmail1"> </label>
+            
+        </div>
+
+
+    </div>
+</div>
+<div class="table-responsive table-full-width" style="margin-top:35px">
+    <table class="table table-hover">
+        <thead>
+        <th>AD</th>
+        <th>DURUM</th>
+        <th>PLANLANAN BAŞLAMA/BİTİRME</th>
+        <th>GERÇEK BAŞLAMA/BİTİRME</th>
+        <th>öNCELİK</th>
+        <th></th>
+        </thead>
+        <tbody style="text-align: center">
+
+            @foreach (var Is in Model.bagliIslerList)
+            {
+                <tr>
+                    <td> <a href="@Url.Action("YapilacakIsDetay", "Danisman",new {@Is.Id})">@Is.Ad</a></td>
+                    @if (Is.IsDurumu.Durum == "bitişi geciken")
+                    {
+                        <td style="background-color: #7525aa; color: white ">@Is.IsDurumu.Durum</td>
+                    }
+                    @if (Is.IsDurumu.Durum == "başlangıcı geciken")
+                    {
+                        <td style="background-color: #9561dd; color:white ">@Is.IsDurumu.Durum</td>
+                    }
+                    @if (Is.IsDurumu.Durum == "tamamlandı")
+                    {
+                        <td style="background-color: #f2eafc ">@Is.IsDurumu.Durum</td>
+                    }
+                    @if (Is.IsDurumu.Durum == "devam ediyor")
+                    {
+                        <td style="background-color: #caa6fc ">@Is.IsDurumu.Durum</td>
+                    }
+                    <td>@Is.planlananBaslamaT.ToString().Substring(0, 10) - @Is.planlananBitisT.ToString().Substring(0, 10)</td>
+                    @if (Is.gercekBaslamaT != null && Is.gercekBitisT != null)
+                    {
+                        <td>@Is.gercekBaslamaT.ToString().Substring(0, 10) - @Is.gercekBitisT.ToString().Substring(0, 10)</td>
+                    }
+                    @if (Is.gercekBaslamaT == null && Is.gercekBitisT != null)
+                    {
+                        <td>- @Is.gercekBitisT.ToString().Substring(0, 10)</td>
+                    }
+                    @if (Is.gercekBaslamaT != null && Is.gercekBitisT == null)
+                    {
+                        <td>@Is.gercekBaslamaT.ToString().Substring(0, 10) -</td>
+                    }
+                    @if (Is.gercekBaslamaT == null && Is.gercekBitisT == null)
+                    {
+                        <td> -</td>
+                    }
+
+                    @if (Is.IsOncellik.OncellikDerecesi == "düşük")
+                    {
+                        <td style="background-color:lightgreen">@Is.IsOncellik.OncellikDerecesi</td>
+                    }
+                    @if (Is.IsOncellik.OncellikDerecesi == "orta")
+                    {
+                        <td style="background-color:lightblue">@Is.IsOncellik.OncellikDerecesi</td>
+                    }
+                    @if (Is.IsOncellik.OncellikDerecesi == "yüksek")
+                    {
+                        <td style="background-color:lightcoral">@Is.IsOncellik.OncellikDerecesi</td>
+                    }
+                    <td >
+                    <button type="button"   onclick = "location.href='@Url.Action("BagliIsSil", "Danisman",new {BagliIsId=@Is.Id,Id=@Model.YapilacakIs_Id})'" class="btn btn-danger">Bağı Kopar</button>
+                    </td>
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        let activeTab = location.hash;
+        $("[href='" + activeTab + "']").trigger("click");
+    });
+    $("#bagliIsEkle").click(function () {
+        let id = $("#IsId").val();
+        let bagliIsId = $("#Is_Id").val();
+
+        $.ajax({
+            url: "/Danisman/BagliIsEkle?Id=" + id + "&bagliIsId=" + bagliIsId,
+            method: "GET",
+            success: function (response) {
+                let href = "/Danisman/YapilacakIsDetay/" + id + "?#menu3";
+
+                if (location.pathname + "?" + location.hash == href) {
+                    window.location.reload();
+                }
+                else {
+                    $(location).attr('href', href);
+                }
+
+            },
+            error: function (response) {
+
+            }
+        });
+
+
+    });
+
+
+</script>
+

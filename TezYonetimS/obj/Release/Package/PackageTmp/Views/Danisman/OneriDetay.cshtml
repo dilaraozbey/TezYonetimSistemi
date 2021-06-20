@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Öneri Tez Detayı";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+
+@model  TezYonetimS.Models.TezOlusturModel
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+
+
+                        @if (ViewBag.Uyari != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.Uyari
+                            </div>
+
+                        }
+                        @if (ViewBag.Basarili != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @ViewBag.Basarili
+                            </div>
+                        }
+                        <div class="content">
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <div class="row">
+
+                                            <div class="col">Öğrenci: @Model.ogrenci.Ad @Model.ogrenci.Soyad</div>
+
+                                            <div class="col">Öğrenci No: @Model.ogrenci.Email</div>
+                                            <br />
+                                            <div class="col">Tez Türü: @Model.oneritez.TezTuru.Tur</div>
+                                            <div class="col">Dil: @Model.oneritez.Dil.Ad</div>
+                                            <br />
+                                            <div class="col">Anahtar Kelimeler: @Model.oneritez.AnahtarKelimeler    </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <br />
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-user">
+                    <div class="image">
+                        <br />
+                        <div class="col" style="margin-left:30px">Özet: @Model.oneritez.Ozet</div>
+                    </div>
+                    <div class="content">
+                        <div class="author">
+
+                        </div>
+
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+

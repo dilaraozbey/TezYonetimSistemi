@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Tez Detay";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+
+@model TezYonetimS.Models.TezOlusturModel
+
+
+        @if (Model.YeniTez.TezDurumId == 1)
+        {
+            @Html.Partial("_acikdetay");
+
+        }
+        else if (Model.YeniTez.TezDurumId == 3)
+        {
+             @Html.Partial("_kapalidetay");
+           
+        }
+      
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+<script type="text/javascript">
+
+    $(document).on('click', '.adressil', function () {
+
+        var Id = $(this).data("id");
+
+        console.log(Id);
+
+        Swal.fire({
+            title: 'Bu tezi silmek istediğine emin misin?',
+            text: "Bu tezle ilgili hiçbir bilgiye bir daha ulaşamayacaksın.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet,silmek istiyorum',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'post',
+                    url: '/Danisman/TezSil/' + Id,
+                    success: function (data) {
+                        if (data) {
+                            console.log('truee');
+                            console.log(data);
+                            Swal.fire(
+                                'Başarıyla Silindi!',
+                                '3 saniye içinde tezler sayfasına yönlendirileceksiniz.',
+                                'success'
+                            )
+                            setTimeout(
+                                function () {
+                                    window.location.href = '/Danisman/OlusturulmusTezler'
+                                }, 3000);
+
+                        }
+                        else {
+                            console.log('false');
+                            Swal.fire(
+                                'Error!',
+                                'Your file has been error.',
+                                'success'
+                            )
+                            return false;
+                        }
+                    }
+                });
+
+
+
+
+            }
+        })
+
+
+    });
+
+    
+</script>
+
+
+
+
+

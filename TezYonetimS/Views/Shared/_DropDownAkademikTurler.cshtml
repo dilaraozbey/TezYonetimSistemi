@@ -1,0 +1,97 @@
+﻿
+<script type="text/javascript">
+        $(document).ready(function () {
+            var bolumlist = $("#BolumId");
+            var danismanlist = $("#DanismanId");
+
+            $("#BirimId").change(function () {
+                $("#ProgramId").prop("disabled", false);
+                danismanlist.empty();
+                bolumlist.empty();
+                var id = $(this).val();
+                var programlist = $("#ProgramId");
+
+                programlist.empty();
+
+
+                $.ajax({
+                    url: '/Home/ProgramListele',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'id': id },
+                    success: function (data) {
+                        programlist.append('<option value =0 > Seçiniz  </option>')
+                        $.each(data, function (index, option) {
+                            programlist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                        });
+
+                    }
+                });
+
+            });
+            $("#BirimId").change(function () {
+                $("#TezTurId").prop("disabled", false);
+                danismanlist.empty();
+                var id = $(this).val();
+                var tezturulist = $("#TezTurId");
+
+                tezturulist.empty();
+
+
+                $.ajax({
+                    url: '/Home/TezListele',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'id': id },
+                    success: function (data) {
+                        tezturulist.append('<option value =0 > Seçiniz  </option>')
+                        $.each(data, function (index, option) {
+                            tezturulist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                        });
+
+                    }
+                });
+
+            });
+            $("#ProgramId").change(function () {
+                $("#BolumId").prop("disabled", false);
+                danismanlist.empty();
+                var id = $(this).val();
+                bolumlist.empty();
+                $.ajax({
+                    url: '/Home/BolumListele',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'id': id },
+                    success: function (data) {
+                        bolumlist.append('<option value =0 > Seçiniz  </option>')
+                        $.each(data, function (index, option) {
+                            bolumlist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                        });
+                    }
+                });
+
+            });
+            $("#BolumId").change(function () {
+                $("#DanismanId").prop("disabled", false);
+                var id = $(this).val();
+                danismanlist.empty();
+                $.ajax({
+                    url: '/Home/DanismanListele',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'id': id },
+                    success: function (data) {
+                        danismanlist.append('<option value =0 > Seçiniz  </option>')
+                        $.each(data, function (index, option) {
+                            danismanlist.append('<option value =' + option.Value + '> ' + option.Text + '</option>')
+                        });
+                    }
+                });
+
+            });
+
+        });
+
+</script>
+

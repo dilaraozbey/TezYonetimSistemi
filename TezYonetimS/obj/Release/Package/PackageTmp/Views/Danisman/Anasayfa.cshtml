@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+@model  TezYonetimS.Models.TezOlusturModel
+
+
+<head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css">
+    <style>
+        .fc .fc-daygrid-day.fc-day-today {
+            background-color: #e7d9fc !important;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/locales-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/locales-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                events: [
+
+                    @foreach (var t in Model.TezToplantilarList)
+                    {
+
+                        <text>{</text>
+                            <text>title: '@t.Tez.Ad', </text>
+                            <text> start: '@t.Tarih.ToString("yyyy-MM-dd")T'+'@t.Saat',</text>
+                        <text> extendedProps: { toplantiAdi:'@t.Adı' },</text>
+                        <text>},</text>
+
+
+                    }
+
+
+
+                ],
+                eventTimeFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    meridiem: false,
+                    hour12: false
+                },
+                eventClick: function (info) {
+                    swal.fire({
+                        title:  info.event.start.toLocaleTimeString(navigator.language,{
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        }),
+                        html: '<pre style="font-size:18px;"><b>Tez Adı:</b> ' + info.event.title + '<br><b>Toplantı Adı:</b> ' + info.event.extendedProps.toplantiAdi + '</pre>',
+                        width:'auto'
+
+                    });
+                    //alert(info.event.title);
+                    //alert(info.event.start);
+                },
+
+                locale: 'tr',
+                buttonText: {
+                    today: 'Bugün'
+                },
+                firstDay: 1,
+                eventBackgroundColor: 'rebeccapurple',
+                initialView: 'dayGridMonth',
+
+            });
+            calendar.render();
+        });
+
+
+
+
+    </script>
+</head>
+<body ">
+    <div style="width:98%" id='calendar'></div>
+
+
+
+
+</body>

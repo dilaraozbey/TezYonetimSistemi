@@ -1,0 +1,175 @@
+﻿
+
+
+@model TezYonetimS.Models.TezOlusturModel
+
+
+
+@using (Html.BeginForm("TezDetay", "Danisman", FormMethod.Post))
+{
+
+    <br />
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+    if (TempData["Uyari"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Uyari"]
+        </div>
+
+    }
+    if (ViewBag.Bilgi != null)
+    {
+        <div class="alert alert-success" role="alert">
+
+
+            @ViewBag.Bilgi
+
+        </div>
+
+    }
+    <div class="content">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tez Adı*</label>
+                    @Html.TextBoxFor(m => m.YeniTez.Ad, Model.YeniTez.Ad, new { @class = "form-control", @placeholder = "Tez Adı" , @disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tez Adı Türkçe</label>
+                    @Html.TextBoxFor(m => m.YeniTez.TurkceAdi, Model.YeniTez.TurkceAdi, new { @class = "form-control", @placeholder = "Tez Adı Türkçe", @disabled = "disabled" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-4">
+
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Bölüm</label>
+                @Html.DropDownListFor(m => m.BolumId, Model.BolumlerList, Model.YeniTez.AkademikBolum.BolumAdi, new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975", @disabled = "disabled" })
+            </div>
+            <div class="form-group col-md-4">
+
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-2">
+
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Dili*</label>
+                @Html.DropDownListFor(m => m.DilId, Model.DillerList, Model.YeniTez.Dil.Ad, new
+                {
+                    @class = "dropdown form-control",
+                    @style = "color:white ;background-color:#02081dcf",
+                    @disabled = "disabled"
+
+           })
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Türü*</label>
+                @Html.DropDownListFor(m => m.TezTurId, Model.TezTurleriList, Model.YeniTez.TezTuru.Tur, new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf", @disabled = "disabled" })
+            </div>
+            <div class="form-group col-md-2">
+
+            </div>
+
+
+
+        </div>
+        <div class="row">
+
+
+            <div class="form-group col-md-6">
+
+                <label for="inputEmail4">Yazar1</label>
+                @if (Model.YeniTez.Kullanici != null)
+                {
+                    @Html.TextBox("yazar1", Model.YeniTez.Kullanici.Ad + " " + Model.YeniTez.Kullanici.Soyad, new { @class = "form-control", @placeholder = "Yazar1", @disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.TextBox("yazar1", null, new { @class = "form-control", @placeholder = "Yazar1", @disabled = "disabled" })
+                }
+            </div>
+            <div class="form-group col-md-6">
+
+                <label for="inputEmail4">Yazar2</label>
+                @if (Model.YeniTez.Kullanici1 != null)
+                {
+                    @Html.TextBox("yazar2", Model.YeniTez.Kullanici1.Ad + " " + Model.YeniTez.Kullanici1.Soyad, new { @class = "form-control", @placeholder = "Yazar2" })
+                }
+                else
+                {
+                    @Html.TextBox("yazar2", null, new { @class = "form-control", @placeholder = "Yazar2", @disabled = "disabled" })
+                }
+            </div>
+
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Anahtar Kelimeler</label>
+                    @Html.TextBoxFor(m => m.YeniTez.AnahtarKelimeler, Model.YeniTez.AnahtarKelimeler, new { @class = "form-control", @placeholder = "Anahtar Kelimeler ", @disabled = "disabled" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <lbel>Özet*</lbel>
+                    @Html.TextBoxFor(m => m.YeniTez.Ozet, Model.YeniTez.Ozet, new { @class = "form-control", @disabled = "disabled" })
+                </div>
+            </div>
+        </div>
+     
+        
+            <div class="row">
+                <div class="form-group col-md-4">
+
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="sil" data-id="@Model.YeniTez.Id" class="adressil btn btn-danger">Sil</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" onclick="location.href='@Url.Action("TeziAc", "Danisman",new {Id=Model.YeniTez.Id})'" class="btn btn-primary">Tezi Aç</button>
+                </div>
+                <div class="form-group col-md-4">
+
+                </div>
+            </div>
+        
+    </div>
+
+
+}
+
+
+
+

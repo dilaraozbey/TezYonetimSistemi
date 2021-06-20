@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Yeni Tez Oluştur";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+@model TezYonetimS.Models.TezOlusturModel
+
+
+@using (Html.BeginForm("TezOlustur", "Danisman", FormMethod.Post))
+{
+    <br />
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+    else if (ViewBag.Bilgi != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.Bilgi
+             
+        </div>
+        <meta http-equiv="refresh" content="3">
+    }
+    <div class="content">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tez Adı*</label>
+                    @Html.TextBoxFor(m => m.YeniTez.Ad, null, new { @class = "form-control", @placeholder = "Tez Adı " })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tez Adı Türkçe</label>
+                    @Html.TextBoxFor(m => m.YeniTez.TurkceAdi, null, new { @class = "form-control", @placeholder = "Tez Adı Türkçe " })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Birim*</label>
+                @Html.DropDownListFor(m => m.BirimId, Model.BirimlerList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#492975" })
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Program*</label>
+                @Html.DropDownListFor(m => m.ProgramId, Model.ProgramlarList, new { @class = "dropdown form-control", @disabled = "disabled", @style = "color:white ;background-color:#492975" })
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Akademik Bölüm*</label>
+                @Html.DropDownListFor(m => m.BolumId, Model.BolumlerList, new { @class = "dropdown form-control", @disabled = "disabled", @style = "color:white ;background-color:#492975" })
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-2">
+
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Dili*</label>
+                @Html.DropDownListFor(m => m.DilId, Model.DillerList, "Seçiniz", new
+                {
+                    @class = "dropdown form-control",
+                    @style = "color:white ;background-color:#02081dcf"
+           })
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Türü*</label>
+                @Html.DropDownListFor(m => m.TezTurId, Model.TezTurleriList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+            <div class="form-group col-md-2">
+
+            </div>
+
+
+
+        </div>
+        <div class="row">
+
+
+            <div class="form-group col-md-6">
+
+                <label for="inputEmail4">Yazar1</label>
+                @Html.TextBox("Yazar1", null, new { @class = "form-control", @placeholder = "Yazar1" })
+            </div>
+            <div class="form-group col-md-6">
+
+                <label for="inputEmail4">Yazar2</label>
+                @Html.TextBox("Yazar2", null, new { @class = "form-control", @placeholder = "Yazar2 " })
+            </div>
+
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Anahtar Kelimeler</label>
+                    @Html.TextBoxFor(m => m.YeniTez.AnahtarKelimeler, null, new { @class = "form-control", @placeholder = "Anahtar Kelimeler " })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <lbel>Özet*</lbel>
+                    @Html.TextAreaFor(m => m.YeniTez.Ozet, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <Center>
+            <button style=" color:white; width:20%; background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Oluştur</button>
+        </Center>
+
+    </div>
+
+
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

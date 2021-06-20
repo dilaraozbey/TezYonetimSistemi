@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "► Tez Başvuru ◄";
+    Layout = "~/Views/Shared/_OgrenciLayout.cshtml";
+}
+@model  TezYonetimS.Models.Akademikturlermodel
+
+
+@using (Html.BeginForm("TezBasvuru", "Ogrenci", FormMethod.Post))
+    {
+        <br />
+        if (ViewBag.Uyari != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Uyari
+            </div>
+
+        }
+<div class="content">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Tez Adı:</label>
+                @Html.TextBoxFor(m => m.TezAdi, null, new { @class = "form-control", @placeholder = "Tez Adı " })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Danışman Adı:</label>
+                @Html.DropDownListFor(m => m.DanismanId, Model.DanismanlarList, "Seçiniz", new
+                     {
+                      @class = "dropdown form-control",
+
+                      @style = "color:white ;background-color:#02081dcf"
+                         })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Anahtar Kelime(ler):</label>
+                @Html.TextBoxFor(m => m.aranacakterim, null, new { @class = "form-control", @placeholder = "Anahtar Kelime(ler" })
+            </div>
+        </div>
+    </div>
+    <Center>
+        <button style=" color:white; width:20%; background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Ara</button>
+    </Center>
+    @if (Model.TezlerList != null)
+    {
+        <div class="table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+                <thead>
+                <th>Tez No</th>
+                <th>Tez Adı</th>
+                <th>Tez Türü</th>
+                <th>Danışman</th>
+                <th>Anahtar Kelimeler</th>
+                </thead>
+                <tbody>
+                    @foreach (var tez in Model.TezlerList)
+                    {
+                    <tr>
+                        <td><a href="@Url.Action("TezDetay", "Ogrenci",new { Id=tez.Id}) ">@tez.Id</a></td>
+                        <td><a href="@Url.Action("TezDetay", "Ogrenci",new { Id=tez.Id}) ">@tez.Ad</a></td>
+                        <td>@tez.TezTuru.Tur</td>
+                        <td>@Model.tumdanismanlarlist.Where(m => m.Value.Equals(tez.DanismanId.ToString())).Select(m => m.Text).FirstOrDefault()</td>
+                        <td>@tez.AnahtarKelimeler</td>
+
+                    </tr>
+
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    }
+
+
+
+
+</div>
+
+
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+

@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Tez Öner";
+    Layout = "~/Views/Shared/_OgrenciLayout.cshtml";
+}
+
+@model TezYonetimS.Models.Akademikturlermodel
+
+
+@using (Html.BeginForm("TezOner", "Ogrenci", FormMethod.Post))
+{
+    <br />
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+    else if (ViewBag.Bilgi != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.Bilgi
+        </div>
+        <meta http-equiv="refresh" content="3">
+    }
+    <div class="content">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Tez Adı*</label>
+                    @Html.TextBoxFor(m => m.YeniTez.Ad, null, new { @class = "form-control", @placeholder = "Tez Adı " })
+                </div>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="inputEmail4">Danışman*</label>
+                    @Html.DropDownListFor(m => m.DanismanId, Model.DanismanlarList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Dili*</label>
+                @Html.DropDownListFor(m => m.DilId, Model.DillerList, "Seçiniz", new
+                {
+                    @class = "dropdown form-control",
+                    @style = "color:white ;background-color:#02081dcf"
+           })
+            </div>
+            <div class="form-group col-md-4">
+
+                <label for="inputEmail4">Tez Türü*</label>
+                @Html.DropDownListFor(m => m.TezTurId, Model.TezTurleriList, "Seçiniz", new { @class = "dropdown form-control", @style = "color:white ;background-color:#02081dcf" })
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Anahtar Kelimeler</label>
+                    @Html.TextBoxFor(m => m.YeniTez.AnahtarKelimeler, null, new { @class = "form-control", @placeholder = "Anahtar Kelimeler " })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="height:100%">
+                <div class="form-group" style="height:auto">
+                    <lbel>Özet*</lbel>
+                    @Html.TextAreaFor(m => m.YeniTez.Ozet, new { @class = "form-control", @style = "height:300px" })
+                </div>
+            </div>
+        </div>
+
+        <Center>
+            <button style=" color:white; width:20%; background-image: linear-gradient(to bottom left, #4e59e1, #902fc1, #e14eca);" type="submit" class="btn btn-primary">Öner</button>
+        </Center>
+
+    </div>
+
+
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+

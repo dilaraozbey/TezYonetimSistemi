@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05fdf32b1d254d6983b274e6e96449d3" Name="Diagram1">
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.AkademikBirim" Width="1.5" PointX="9" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.AkademikBolum" Width="1.5" PointX="9" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.AkademikProgram" Width="1.5" PointX="6.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.AltIs" Width="1.5" PointX="18.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.BagliIs" Width="1.5" PointX="18.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.BagliOlacagiIs" Width="1.5" PointX="18.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.BasvuruDurumu" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Bildirim" Width="1.5" PointX="7.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Dil" Width="1.5" PointX="9" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.IsDurumu" Width="1.5" PointX="14.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.IsOncellik" Width="1.5" PointX="14.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Kullanici" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Not" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.OneriTez" Width="1.5" PointX="8.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Rol" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Sohbet" Width="1.5" PointX="5.25" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Tez" Width="1.5" PointX="11.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.TezBasvuru" Width="1.5" PointX="16.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.TezDurumu" Width="1.5" PointX="9" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.TezTuru" Width="1.5" PointX="9" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.TezTuru_AkademikBirim" Width="1.5" PointX="11.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Toplanti" Width="1.5" PointX="13.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.Toplanti_YapilacakIs" Width="1.5" PointX="21.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.ToplantiDurumu" Width="1.5" PointX="11.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.YapilacakIs" Width="1.5" PointX="16.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TezYonetimSistemiModel.YapilacakIs_Sohbet" Width="1.5" PointX="7.5" PointY="32.75" IsExpanded="true" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_AkademikProgram_AkademikBirim" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_AkademikBirim" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_TezTuru_AkademikBirim_AkademikBirim1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_AkademikBolum_AkademikProgram" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_AkademikBolum" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_AkademikProgram" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_AltIs_IsOncellik" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_AltIs_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_AltIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Table1_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Table1_YapilacakIs1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_BagliOlacagiIs_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_BagliOlacagiIs_YapilacakIs1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_BasvuruDurumu" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_BasvuruDurumu1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_TezBasvuru_BasvuruDurumu" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_Kullanici3" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_Kullanici4" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_Kullanici5" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_OneriTez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_Sohbet" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_Tez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Bildirim_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_Dil" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_Dil" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_IsDurumu" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_IsOncellik" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Kullanici_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_Kullanici3" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici3" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici4" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Sohbet_Kullanici5" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_TezBasvuru_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Kullanici2" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_Tez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_Toplanti" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Not_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_OneriTez_TezTuru" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_OneriTez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Sohbet_Sohbet" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_TezDurumu" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Tez_TezTuru" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_TezBasvuru_Tez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_Tez1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Tez" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_TezTuru_AkademikBirim_TezTuru1" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_ToplantiDurumu" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_YapilacakIs_Toplanti" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_Toplanti_YapilacakIs_YapilacakIs" ManuallyRouted="false" />
+        <AssociationConnector Association="TezYonetimSistemiModel.FK_YapilacakIs_Sohbet_YapilacakIs" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

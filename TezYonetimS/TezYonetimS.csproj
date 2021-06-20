@@ -1,0 +1,937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44A710E6-AE68-4696-AB07-F6C5F53AAF72}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TezYonetimS</RootNamespace>
+    <AssemblyName>TezYonetimS</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44306</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AkademikBirim.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AkademikBolum.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AkademikProgram.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AltIs.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BagliIs.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BagliOlacagiIs.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BasvuruDurumu.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bildirim.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Classlar\CustomRoleProvider.cs" />
+    <Compile Include="Classlar\KullaniciIslemleri.cs" />
+    <Compile Include="Classlar\MailYollama.cs" />
+    <Compile Include="Classlar\OgrenciTezSorgulama.cs" />
+    <Compile Include="Classlar\SifreSifreleme.cs" />
+    <Compile Include="Classlar\TalepOneriModel.cs" />
+    <Compile Include="Classlar\TezSorgulama.cs" />
+    <Compile Include="Controllers\DanismanController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
+    <Compile Include="Controllers\OgrenciController.cs" />
+    <Compile Include="Dil.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IsDurumu.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IsOncellik.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kullanici.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Akademikturlermodel.cs" />
+    <Compile Include="Models\TezOlusturModel.cs" />
+    <Compile Include="Models\TezYonetimModel.cs" />
+    <Compile Include="Not.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OneriTez.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sohbet.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tez.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezBasvuru.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezDurumu.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezTuru.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezTuru_AkademikBirim.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezYonetimSistemi.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TezYonetimSistemi.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezYonetimSistemi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TezYonetimSistemi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TezYonetimSistemi.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Toplanti.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ToplantiDurumu.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Toplanti_YapilacakIs.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YapilacakIs.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YapilacakIs_Sohbet.cs">
+      <DependentUpon>TezYonetimSistemi.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\animate.min.css" />
+    <Content Include="assets\css\blk-design-system.css" />
+    <Content Include="assets\css\blk-design-system.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\light-bootstrap-dashboard.css" />
+    <Content Include="assets\css\nucleo-icons.css" />
+    <Content Include="assets\css\pe-icon-7-stroke.css" />
+    <Content Include="assets\demo\demo.css" />
+    <Content Include="assets\demo\demo.js" />
+    <Content Include="assets\fonts\nucleo-icons.svg" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="assets\img\apple-icon.png" />
+    <Content Include="assets\img\asc.gif" />
+    <Content Include="assets\img\bg.gif" />
+    <Content Include="assets\img\bitcoin.png" />
+    <Content Include="assets\img\blob.png" />
+    <Content Include="assets\img\cercuri.png" />
+    <Content Include="assets\img\chester-wade.jpg" />
+    <Content Include="assets\img\default-avatar.png" />
+    <Content Include="assets\img\denys.jpg" />
+    <Content Include="assets\img\desc.gif" />
+    <Content Include="assets\img\dots.png" />
+    <Content Include="assets\img\etherum.png" />
+    <Content Include="assets\img\fabien-bazanegue.jpg" />
+    <Content Include="assets\img\faces\face-0.jpg" />
+    <Content Include="assets\img\faces\face-1.jpg" />
+    <Content Include="assets\img\faces\face-2.jpg" />
+    <Content Include="assets\img\faces\face-3.jpg" />
+    <Content Include="assets\img\faces\face-4.jpg" />
+    <Content Include="assets\img\faces\face-5.jpg" />
+    <Content Include="assets\img\faces\face-6.jpg" />
+    <Content Include="assets\img\faces\face-7.jpg" />
+    <Content Include="assets\img\faces\tim_vector.jpe" />
+    <Content Include="assets\img\favicon.ico" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\full-screen-image-3.jpg" />
+    <Content Include="assets\img\github.svg" />
+    <Content Include="assets\img\google.svg" />
+    <Content Include="assets\img\james.jpg" />
+    <Content Include="assets\img\julie.jpeg" />
+    <Content Include="assets\img\landing-page.png" />
+    <Content Include="assets\img\loading-bubbles.svg" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\lora.jpg" />
+    <Content Include="assets\img\mark-finn.jpg" />
+    <Content Include="assets\img\mask.png" />
+    <Content Include="assets\img\mike.jpg" />
+    <Content Include="assets\img\new_logo.png" />
+    <Content Include="assets\img\nucleo-logo.svg" />
+    <Content Include="assets\img\path1.png" />
+    <Content Include="assets\img\path2.png" />
+    <Content Include="assets\img\path3.png" />
+    <Content Include="assets\img\path4.png" />
+    <Content Include="assets\img\path5.png" />
+    <Content Include="assets\img\patrat.png" />
+    <Content Include="assets\img\profile-page.png" />
+    <Content Include="assets\img\ripp.png" />
+    <Content Include="assets\img\ryan.jpg" />
+    <Content Include="assets\img\sidebar-1.jpg" />
+    <Content Include="assets\img\sidebar-2.jpg" />
+    <Content Include="assets\img\sidebar-3.jpg" />
+    <Content Include="assets\img\sidebar-4.jpg" />
+    <Content Include="assets\img\sidebar-5.jpg" />
+    <Content Include="assets\img\square-purple-1.png" />
+    <Content Include="assets\img\square1.png" />
+    <Content Include="assets\img\square2.png" />
+    <Content Include="assets\img\square3.png" />
+    <Content Include="assets\img\square4.png" />
+    <Content Include="assets\img\square5.png" />
+    <Content Include="assets\img\square6.png" />
+    <Content Include="assets\img\tim_80x80.png" />
+    <Content Include="assets\img\triunghiuri.png" />
+    <Content Include="assets\img\waves.png" />
+    <Content Include="assets\js\blk-design-system.js" />
+    <Content Include="assets\js\blk-design-system.min.js" />
+    <Content Include="assets\js\bootstrap-notify.js" />
+    <Content Include="assets\js\bootstrap-select.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\chartist.min.js" />
+    <Content Include="assets\js\core\bootstrap.min.js" />
+    <Content Include="assets\js\core\jquery.3.2.1.min.js" />
+    <Content Include="assets\js\core\jquery.min.js" />
+    <Content Include="assets\js\core\popper.min.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\jquery.3.2.1.min.js" />
+    <Content Include="assets\js\light-bootstrap-dashboard.js" />
+    <Content Include="assets\js\plugins\bootstrap-datepicker.js" />
+    <Content Include="assets\js\plugins\bootstrap-datetimepicker.js" />
+    <Content Include="assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="assets\js\plugins\bootstrap-switch.js" />
+    <Content Include="assets\js\plugins\chartist.min.js" />
+    <Content Include="assets\js\plugins\chartjs.min.js" />
+    <Content Include="assets\js\plugins\jquery.sharrre.min.js" />
+    <Content Include="assets\js\plugins\moment.min.js" />
+    <Content Include="assets\js\plugins\nouislider.min.js" />
+    <Content Include="assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui-1.10.4.min.js" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery.ui.datepicker-tr.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="docs\documentation.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="gulpfile.js" />
+    <Content Include="Images\arkaplan.png" />
+    <Content Include="Images\background.png" />
+    <Content Include="Images\key.png" />
+    <Content Include="Images\Logobeyaz.png" />
+    <Content Include="Images\yalovauni.jpg" />
+    <Content Include="Images\yalovauni.png" />
+    <Content Include="Images\o.png" />
+    <Content Include="Images\on.png" />
+    <Content Include="Images\online-graduation.png" />
+    <Content Include="Images\reviews.png" />
+    <Content Include="Images\TezYonetimSistemiIcon.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Untitled.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\yazisiyah.png" />
+    <Content Include="assets\css\blk-design-system.css.map" />
+    <Content Include="assets\fonts\nucleo.eot" />
+    <Content Include="assets\fonts\nucleo.ttf" />
+    <Content Include="assets\fonts\nucleo.woff" />
+    <Content Include="assets\fonts\nucleo.woff2" />
+    <Content Include="assets\js\blk-design-system.js.map" />
+    <Content Include="assets\scss\blk-design-system.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_alert.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_badge.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_buttons.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_caret.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_float.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_forms.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_gradients.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_grid.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_hover.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_image.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_list-group.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_lists.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_pagination.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_resize.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_size.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_table-row.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_transition.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\mixins\_visibility.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_align.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_background.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_borders.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_display.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_embed.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_flex.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_float.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_position.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_shadows.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_sizing.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_spacing.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_text.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\utilities\_visibility.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_alert.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_badge.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_breadcrumb.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_button-group.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_buttons.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_card.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_carousel.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_close.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_code.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_custom-forms.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_dropdown.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_forms.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_functions.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_grid.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_images.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_input-group.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_jumbotron.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_list-group.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_media.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_mixins.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_modal.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_nav.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_navbar.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_pagination.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_popover.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_print.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_progress.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_reboot.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_root.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_tables.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_tooltip.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_transitions.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_type.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_utilities.scss" />
+    <Content Include="assets\scss\blk-design-system\bootstrap\_variables.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-chart.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-map.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-plain.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-register.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-stats.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-task.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\cards\_card-user.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\opacity.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_alert.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_background-variant.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_badges.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_buttons.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_dropdown.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_forms.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_icon.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_inputs.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_modals.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_page-header.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_popovers.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_vendor-prefixes.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\mixins\_wizard.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_blogs.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_contactus.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_features.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_headers.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_pricing.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_projects.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_social-subscribe-lines.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_team.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\sections\_testimonials.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_backgrounds.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_floating.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_helper.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_position.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_shadows.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_sizing.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_spacing.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_text.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\utilities\_transform.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\vendor\_plugin-animate-bootstrap-notify.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\vendor\_plugin-bootstrap-switch.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\vendor\_plugin-datetimepicker.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\vendor\_plugin-nouislider.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\vendor\_plugin-perfect-scrollbar.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_alerts.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_badge.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_buttons.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_card.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_checkboxes-radio.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_dropdown.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_example-pages.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_fixed-plugin.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_footer.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_forms.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_functions.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_icons.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_images.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_info-areas.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_input-group.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_misc.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_mixins.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_modal.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_navbar.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_pagination.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_pills.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_progress.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_rtl.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_sections.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_tables.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_tabs.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_type.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_utilities.scss" />
+    <Content Include="assets\scss\blk-design-system\custom\_variables.scss" />
+    <Content Include="assets\fonts\nucleo-icons.eot" />
+    <Content Include="assets\fonts\nucleo-icons.ttf" />
+    <Content Include="assets\fonts\nucleo-icons.woff" />
+    <Content Include="assets\fonts\nucleo-icons.woff2" />
+    <Content Include="assets\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="assets\sass\lbd\mixins\_cards.scss" />
+    <Content Include="assets\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="assets\sass\lbd\mixins\_icons.scss" />
+    <Content Include="assets\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="assets\sass\lbd\mixins\_labels.scss" />
+    <Content Include="assets\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="assets\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="assets\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="assets\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="assets\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="assets\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="assets\sass\lbd\plugins\_animate.scss" />
+    <Content Include="assets\sass\lbd\plugins\_datetime-picker.scss" />
+    <Content Include="assets\sass\lbd\_alerts.scss" />
+    <Content Include="assets\sass\lbd\_bootstrap-switch.scss" />
+    <Content Include="assets\sass\lbd\_buttons.scss" />
+    <Content Include="assets\sass\lbd\_cards.scss" />
+    <Content Include="assets\sass\lbd\_chartist.scss" />
+    <Content Include="assets\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="assets\sass\lbd\_dropdown.scss" />
+    <Content Include="assets\sass\lbd\_footers.scss" />
+    <Content Include="assets\sass\lbd\_inputs.scss" />
+    <Content Include="assets\sass\lbd\_misc.scss" />
+    <Content Include="assets\sass\lbd\_mixins.scss" />
+    <Content Include="assets\sass\lbd\_navbars.scss" />
+    <Content Include="assets\sass\lbd\_partial-nucleo-icons.scss" />
+    <Content Include="assets\sass\lbd\_responsive.scss" />
+    <Content Include="assets\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="assets\sass\lbd\_tables.scss" />
+    <Content Include="assets\sass\lbd\_typography.scss" />
+    <Content Include="assets\sass\lbd\_variables.scss" />
+    <Content Include="assets\sass\light-bootstrap-dashboard.scss" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.css.map" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker.css.map" />
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker-en-CA.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar-tn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.br.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-AU.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-CA.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-IE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-NZ.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-ZA.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.km.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.oc.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.si.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ta.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uz-cyrl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uz-latn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="TezYonetimSistemi.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TezYonetimSistemi.edmx</DependentUpon>
+      <LastGenOutput>TezYonetimSistemi.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TezYonetimSistemi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TezYonetimSistemi.edmx</DependentUpon>
+      <LastGenOutput>TezYonetimSistemi.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_DropDownAkademikTurler.cshtml" />
+    <Content Include="Views\Kullanici\UyeGirisi.cshtml" />
+    <Content Include="Views\Kullanici\UyeOl.cshtml" />
+    <Content Include="Views\Shared\_DanismanLayout.cshtml" />
+    <Content Include="Views\Danisman\TezOlustur.cshtml" />
+    <Content Include="Views\Shared\IslemTamam.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_OgrenciLayout.cshtml" />
+    <Content Include="Views\Ogrenci\TezBasvuru.cshtml" />
+    <Content Include="Views\Ogrenci\TezDetay.cshtml" />
+    <Content Include="Views\Danisman\TezTalepleri.cshtml" />
+    <Content Include="Views\Ogrenci\TezOner.cshtml" />
+    <Content Include="Views\Danisman\TezOnerileri.cshtml" />
+    <Content Include="Views\Danisman\OlusturulmusTezler.cshtml" />
+    <Content Include="Views\Danisman\OneriTezDetay.cshtml" />
+    <Content Include="Views\Danisman\TezDetay.cshtml" />
+    <Content Include="Views\Anasayfa\Index.cshtml" />
+    <Content Include="Views\Danisman\DevamEdenTezler.cshtml" />
+    <Content Include="Views\Danisman\DevamEdenTezDetay.cshtml" />
+    <Content Include="Views\Shared\_TezDetayi.cshtml" />
+    <Content Include="Views\Shared\_Notlar.cshtml" />
+    <Content Include="Views\Shared\_TezToplanti.cshtml" />
+    <Content Include="Views\Shared\_YeniToplanti.cshtml" />
+    <Content Include="Scripts\moment.min.js.map" />
+    <Content Include="Scripts\moment-with-locales.min.js.map" />
+    <Content Include="Views\Danisman\Anasayfa.cshtml" />
+    <Content Include="Views\Shared\_bildirimler.cshtml" />
+    <Content Include="Views\Shared\_devamedendetay.cshtml" />
+    <Content Include="Views\Shared\_kapalidetay.cshtml" />
+    <Content Include="Views\Shared\_acikdetay.cshtml" />
+    <Content Include="Views\Shared\_oneritalepyenitoplanti.cshtml" />
+    <Content Include="Views\Shared\_yeniYapilacakIs.cshtml" />
+    <Content Include="Views\Danisman\YapilacakIsDetay.cshtml" />
+    <Content Include="Views\Shared\_yapilacakisler.cshtml" />
+    <Content Include="Views\Shared\_yapilacakisdetay.cshtml" />
+    <Content Include="Views\Shared\_altisler.cshtml" />
+    <Content Include="Views\Shared\_bagliisler.cshtml" />
+    <Content Include="Views\Shared\_bagliolacagiisler.cshtml" />
+    <Content Include="Views\Shared\_sohbet.cshtml" />
+    <Content Include="Views\Shared\_yapilacakistoplanti.cshtml" />
+    <Content Include="Views\Shared\_YeniAltIs.cshtml" />
+    <Content Include="Views\Shared\_YeniYapilacakIsToplanti.cshtml" />
+    <EntityDeploy Include="TezYonetimSistemi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TezYonetimSistemi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="TezYonetimSistemi.edmx.diagram">
+      <DependentUpon>TezYonetimSistemi.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Ogrenci\DevamEdenTezDetay.cshtml" />
+    <Content Include="Views\Shared\_altisler_O.cshtml" />
+    <Content Include="Views\Shared\_bagliisler_O.cshtml" />
+    <Content Include="Views\Shared\_devamedentezdetay_O.cshtml" />
+    <Content Include="Views\Shared\_Notlar_O.cshtml" />
+    <Content Include="Views\Shared\_TezToplanti_O.cshtml" />
+    <Content Include="Views\Shared\_yapilacakisler_O.cshtml" />
+    <Content Include="Views\Shared\_yapilacakisdetay_O.cshtml" />
+    <Content Include="Views\Ogrenci\YapilacakIsDetay.cshtml" />
+    <Content Include="Views\Ogrenci\DevamEdenTez.cshtml" />
+    <Content Include="Views\Shared\_bagliolacagiisler_O.cshtml" />
+    <Content Include="Views\Shared\_TezDetayi_O.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63844</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44306/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

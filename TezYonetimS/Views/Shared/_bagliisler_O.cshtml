@@ -1,0 +1,79 @@
+﻿@model TezYonetimS.Models.Akademikturlermodel
+
+
+<div class="row">
+
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="exampleInputEmail1"> </label>
+
+        </div>
+
+    </div>
+</div>
+<div class="table-responsive table-full-width" style="margin-top:35px">
+    <table class="table table-hover">
+        <thead>
+        <th>AD</th>
+        <th>DURUM</th>
+        <th>PLANLANAN BAŞLAMA/BİTİRME</th>
+        <th>GERÇEK BAŞLAMA/BİTİRME</th>
+        <th>öNCELİK</th>
+        <th></th>
+        </thead>
+        <tbody style="text-align: center">
+
+            @foreach (var Is in Model.bagliIslerList)
+            {
+                <tr>
+                    <td> <a href="@Url.Action("YapilacakIsDetay", "Ogrenci",new {@Is.Id})">@Is.Ad</a></td>
+                    @if (Is.IsDurumu.Durum == "bitişi geciken")
+                    {
+                <td style="background-color: #7525aa; color: white ">@Is.IsDurumu.Durum</td>}
+                    @if (Is.IsDurumu.Durum == "başlangıcı geciken")
+                    {
+                <td style="background-color: #9561dd; color:white ">@Is.IsDurumu.Durum</td>}
+                    @if (Is.IsDurumu.Durum == "tamamlandı")
+                    {
+                <td style="background-color: #f2eafc ">@Is.IsDurumu.Durum</td>}
+                    @if (Is.IsDurumu.Durum == "devam ediyor")
+                    {
+                <td style="background-color: #caa6fc ">@Is.IsDurumu.Durum</td>}
+                    <td>@Is.planlananBaslamaT.ToString().Substring(0, 10) - @Is.planlananBitisT.ToString().Substring(0, 10)</td>
+                    @if (Is.gercekBaslamaT != null && Is.gercekBitisT != null)
+                    {
+                <td>@Is.gercekBaslamaT.ToString().Substring(0, 10) - @Is.gercekBitisT.ToString().Substring(0, 10)</td>}
+                    @if (Is.gercekBaslamaT == null && Is.gercekBitisT != null)
+                    {
+                <td>- @Is.gercekBitisT.ToString().Substring(0, 10)</td>}
+                    @if (Is.gercekBaslamaT != null && Is.gercekBitisT == null)
+                    {
+                <td>@Is.gercekBaslamaT.ToString().Substring(0, 10) -</td>}
+                    @if (Is.gercekBaslamaT == null && Is.gercekBitisT == null)
+                    {
+                <td> -</td>}
+
+                    @if (Is.IsOncellik.OncellikDerecesi == "düşük")
+                    {
+                <td style="background-color:lightgreen">@Is.IsOncellik.OncellikDerecesi</td>}
+                    @if (Is.IsOncellik.OncellikDerecesi == "orta")
+                    {
+                <td style="background-color:lightblue">@Is.IsOncellik.OncellikDerecesi</td>}
+                    @if (Is.IsOncellik.OncellikDerecesi == "yüksek")
+                    {
+                <td style="background-color:lightcoral">@Is.IsOncellik.OncellikDerecesi</td>}
+
+                </tr>}
+
+
+        </tbody>
+    </table>
+
+</div>

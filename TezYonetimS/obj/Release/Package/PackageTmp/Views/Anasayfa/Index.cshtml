@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AnasayfaLayout.cshtml";
+}
+
+<html>
+<head>
+    <style>
+        #container {
+            
+            background-color: #567;
+            position: absolute;
+            left: 45%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body >
+    <div id="container">
+        <div class="row">
+            <div class="col-md-6" >
+              
+                    <div class="header" >
+                        <button type="button" onclick="location.href='@Url.Action("TezPlanlama", "Anasayfa")'">Tez Planlama</button>
+
+                    </div>
+               
+            </div>
+            <div class="col-md-6">
+                
+                    <div class="header">
+                        <button type="button" onclick="location.href='@Url.Action("TezYonetimi", "Anasayfa")'">Tez Yönetimi</button>
+                    </div>
+               
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

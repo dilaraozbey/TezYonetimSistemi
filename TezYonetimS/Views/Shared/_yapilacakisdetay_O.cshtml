@@ -1,0 +1,162 @@
+﻿
+
+@model TezYonetimS.Models.Akademikturlermodel
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>İş Adı*:</label>
+                @Html.TextBoxFor(m => m.Is.Ad, Model.Is.Ad, new { disabled = "true", @class = "form-control", @id = "isAdi" })
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+
+            <label for="inputEmail4">Durum*:</label>
+            @Html.DropDownListFor(m => m.Is.IsDurumuId, Model.IsDurumList, Model.Is.IsDurumu.Durum, new { disabled = "true", @class = "dropdown form-control", @style = "color:white ;background-color:#492975", @id = "IsDurumuId" })
+        </div>
+        <div class="form-group col-md-3">
+
+            <label for="inputEmail4">Öncelik*:</label>
+            @Html.DropDownListFor(m => m.Is.IsOncelikId, Model.IsOncelikList, Model.Is.IsOncellik.OncellikDerecesi, new { disabled = "true", @class = "dropdown form-control", @style = "color:white ;background-color:#492975", @id = "IsOncelikId" })
+        </div>
+
+        <div class='col-md-3'>
+            <div class="form-group">
+                <label for="CreatedOn">Planlanan Başlama Tarihi*:</label>
+                <div autocomplete="off">
+                    <input class="text-box single-line" data-val="true" id="planlananBaslama" name="planlananBaslama" type="text" value=@Model.Is.planlananBaslamaT disabled required autocomplete="off" />
+                    <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                </div>
+                <hr />
+            </div>
+        </div>
+
+        <div class='col-md-3'>
+            <div class="form-group">
+                <label for="CreatedOn">Planlanan Bitiş Tarihi*:</label>
+                <div>
+                    <input class="text-box single-line" data-val="true" id="planlananBitis" name="planlananBitis" type="text" value=@Model.Is.planlananBitisT disabled required autocomplete="off" />
+                    <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                </div>
+                <hr />
+            </div>
+        </div>
+
+        @if (Model.Is.gercekBaslamaT != null)
+        {
+<div class='col-md-3'>
+    <div class="form-group">
+        <label for="CreatedOn">Gerçek Başlama Tarihi:</label>
+        <div autocomplete="off">
+            <input class="text-box single-line" data-val="true" id="gercekBaslama" name="gercekBaslama" type="text" value=@Model.Is.gercekBaslamaT disabled autocomplete="off" />
+            <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+        </div>
+        <hr />
+    </div>
+</div>}
+        @if (Model.Is.gercekBaslamaT == null)
+        {
+<div class='col-md-3'>
+    <div class="form-group">
+        <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+        <div autocomplete="off">
+            <input class="text-box single-line" data-val="true" id="gercekBaslama" name="gercekBaslama" type="text" value="" disabled autocomplete="off" />
+            <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+        </div>
+        <hr />
+    </div>
+</div>}
+        @if (Model.Is.gercekBitisT != null)
+        {
+<div class='col-md-3'>
+    <div class="form-group">
+        <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+        <div autocomplete="off">
+            <input class="text-box single-line" data-val="true" id="gercekBitis" name="gercekBitis" type="text" value=@Model.Is.gercekBitisT disabled autocomplete="off" />
+            <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+        </div>
+        <hr />
+    </div>
+</div>}
+        @if (Model.Is.gercekBitisT == null)
+        {
+<div class='col-md-3'>
+    <div class="form-group">
+        <label for="CreatedOn">Gerçek Bitiş Tarihi:</label>
+        <div autocomplete="off">
+            <input class="text-box single-line" data-val="true" id="gercekBitis" name="gercekBitis" type="text" value="" disabled autocomplete="off" />
+            <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+        </div>
+        <hr />
+    </div>
+</div>}
+        <center>
+
+            <div class="col-md-12">
+                <label>Açıklama*:</label>
+                <div class="form-group">
+
+                    @Html.TextAreaFor(m => m.Is.Aciklama, new { disabled = "true", rows = "10", cols = "50", @id = "Aciklama" })
+                </div>
+            </div>
+        </center>
+
+        <hr />
+    </div>
+    <div class="row">
+        <div class="form-group col-md-5">
+
+        </div>
+
+        <div class="form-group col-md-5">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.regional["tr"];
+        $('#planlananBitis').datepicker({
+
+
+        });
+
+
+        $('#gercekBaslama').datepicker({
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#gercekBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#gercekBitis').datepicker("option", "minDate", newDate);
+
+
+            }
+        });
+        $('#gercekBitis').datepicker({
+
+
+        });
+        $("#planlananBaslama").datepicker({
+
+
+            minDate: 0,
+            onSelect: function (date) {
+                var date1 = $('#planlananBaslama').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#planlananBitis').datepicker("option", "minDate", newDate);
+                $('#gercekBaslama').datepicker("option", "minDate", newDate);
+
+            }
+        });
+
+    });</script>

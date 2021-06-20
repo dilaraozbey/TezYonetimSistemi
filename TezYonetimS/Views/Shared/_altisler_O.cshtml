@@ -1,0 +1,43 @@
+﻿
+
+@model TezYonetimS.Models.Akademikturlermodel
+<center>
+    <div class="table-responsive " style="margin-top:30px ;width:85%">
+        <table class="table table-hover">
+            <thead>
+            <th>AD</th>
+            <th>BAŞLAMA/BİTİRME</th>
+            <th>öNCELİK</th>
+            <th></th>
+            </thead>
+            <tbody>
+                @if (Model.AltIsList.Count != 0)
+                {
+                    foreach (var Is in Model.AltIsList)
+                    {
+                        <tr>
+                            <td> @Is.Ad</td>
+
+                            <td>@Is.BaslangicTarihi.ToString().Substring(0, 10) - @Is.BitisTarihi.ToString().Substring(0, 10)</td>
+
+                            @if (Is.IsOncellik.OncellikDerecesi == "düşük")
+                            {
+                                <td style="background-color:lightgreen">@Is.IsOncellik.OncellikDerecesi</td>
+}
+                            @if (Is.IsOncellik.OncellikDerecesi == "orta")
+                            {
+                                <td style="background-color:lightblue">@Is.IsOncellik.OncellikDerecesi</td>
+}
+                            @if (Is.IsOncellik.OncellikDerecesi == "yüksek")
+                            {
+                                <td style="background-color:lightcoral">@Is.IsOncellik.OncellikDerecesi</td>
+}
+                        </tr>
+}
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</center>

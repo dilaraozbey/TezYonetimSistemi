@@ -1,0 +1,126 @@
+﻿
+
+
+@model TezYonetimS.Models.TezOlusturModel
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Yeni Toplantı</h5>
+        </div>
+        <div class="modal-body">
+            <form action="~/Danisman/YeniYapilacakIsToplanti" method="post">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Toplantı Adı:</label>
+                    @Html.TextBoxFor(m => m.YeniToplanti.Adı, null, new { @class = "form-control", @autocomplete = "off", @placeholder = "Tez Adı " })
+                   
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="CreatedOn">Tarih:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.YeniToplanti.Tarih, null, new { @class = "text-box single-line", @autocomplete = "off" ,@id="toplantitarih" })
+                        @*<input style="width:45%" class="text-box single-line" data-val="true" autocomplete="off" id="toplantitarih" type="text" value="" />*@
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="CreatedOn">Saat:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.YeniToplanti.Saat, null, new { Type="time", @class = "text-box single-line", @autocomplete = "off", @placeholder = "Tez Adı " })
+                        @*<input style="width:45%" class="text-box single-line" data-val="true" autocomplete="off" id="toplantisaat" type="time" value="" />*@
+                        <span class="field-validation-valid" data-valmsg-for="CreatedOn" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="control-label col-md-2" for="CreatedOn">Yapılacak İşler:</label>
+                    @foreach (var Is in Model.yapilacakIsList)
+                    {
+                        <div >
+                            <input type="checkbox" name="degerler" value="@Is.Id" />@Is.Ad
+                        </div>
+                        
+                    }
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-success">Oluştur</button>
+                </div>
+
+            </form>
+        </div>
+       
+    </div>
+
+
+
+    <script type="text/javascript">
+    $(function () {
+        $.datepicker.regional["tr"];
+        $('#toplantitarih').datepicker({
+            minDate: 'today',
+        });
+
+    })
+    @*$(document).ready(function () {
+        let activeTab = location.hash;
+        $("[href='" + activeTab + "']").trigger("click");
+    });
+    $("#IsToplantiOlustur").click(function () {
+        let id = @Model.Is.Id;
+        let toplantiadi = $("#Istoplantiadi").val();
+        let tarih = $("#toplantitarih").val();
+        let saat = $("#toplantisaat").val();
+        if (toplantiadi == "" || tarih == null || tarih == "" || saat == null || saat == "" ) {
+
+            Swal.fire('Lütfen Eksik Bir Yer Bırakmadığınıza Emin Olun!')
+        }
+        else {
+            $.ajax({
+                $.ajax({
+                    url: "/Danisman/YapilacakIsToplanti?Id=" + id + "&toplantiadi=" + toplantiadi + "&tarih=" + tarih + "&saat=" + saat,
+                    method: "GET",
+                    success: function (response) {
+                        let href = "/Danisman/YapilacakIsDetay/" + id + "?#menu6";
+
+                        if (location.pathname + "?" + location.hash == href) {
+                            window.location.reload();
+                        }
+                        else {
+                            $(location).attr('href', href);
+                        }
+
+                    },
+                    error: function (response) {
+
+                    }
+                });
+
+            });
+            $(document).ready(function () {
+                let menuId = location.hash;
+                if (location.hash.substr(1, 4) == "menu") {
+                    let $targetButton = $("[href='" + menuId + "']").parent();
+                    let $targetContent = $(menuId);
+
+                    $targetButton.siblings().removeClass("active");
+                    $targetButton.addClass("active");
+
+                    $targetContent.siblings().removeClass("active show in");
+                    $targetContent.addClass("active show in");
+
+                }
+            });
+
+        }
+
+    });*@
+
+    </script>
+

@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Öneri Tez ";
+    Layout = "~/Views/Shared/_DanismanLayout.cshtml";
+}
+
+
+@model TezYonetimS.Models.TezOlusturModel
+
+
+@using (Html.BeginForm("OneriTezDetay", "Danisman", FormMethod.Post))
+{
+    if (ViewBag.Uyari != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Uyari
+        </div>
+
+    }
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+
+
+                            @if (ViewBag.Uyari != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewBag.Uyari
+                                </div>
+
+                            }
+                            @if (ViewBag.Basarili != null)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    @ViewBag.Basarili
+                                </div>
+                            }
+                            <div class="content">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <div>
+                                            <div class="row">
+                                                <div class="col">Tez Adı: @Model.oneritez.Ad</div>
+                                                <br />
+                                                <div class="col">Öğrenci: @Model.ogrenci.Ad @Model.ogrenci.Soyad</div>
+
+                                                <div class="col">Öğrenci No: @Model.ogrenci.Email</div>
+                                                <br />
+                                                <div class="col">Tez Türü: @Model.oneritez.TezTuru.Tur</div>
+                                                <div class="col">Dil: @Model.oneritez.Dil.Ad</div>
+                                                <br />
+                                                <div class="col">Anahtar Kelimeler: @Model.oneritez.AnahtarKelimeler    </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <br />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-user">
+                    <div class="image">
+                        <br />
+                        <div class="col" style="margin-left:30px">Özet: @Model.oneritez.Ozet</div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-2">
+
+                    <button type="button" onclick="location.href='@Url.Action("TezOneriOnayla", "Danisman",new { Id=Model.oneritez.Id,Ogrenci=Model.ogrenci.Id})'" class="btn btn-success">Onayla</button>
+
+                </div>
+                <div class="col-md-2">
+                    <button type="button" onclick="location.href='@Url.Action("TezOneriReddet", "Danisman",new { Id=Model.oneritez.Id,Ogrenci=Model.ogrenci.Id})'" class="btn btn-danger">Reddet</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info">Toplantı Oluştur</button>
+                </div>
+                <div class="col-md-3">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+           
+            @Html.Partial("_oneritalepyenitoplanti",Model)
+        </div>
+    </div>
+
+
+
+}
+
+<style>
+    .modal-backdrop {
+        z-index: -1;
+        display: none;
+    }
+</style>
+
+<script>
+    $('.modal').on('hidden.bs.modal', function () {
+        $("body").css("padding-right", "");
+    });
+</script>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
